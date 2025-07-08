@@ -12,6 +12,7 @@
   "dependencies": {
     "@pathofdev/react-tag-input": "^1.0.7",
     "@tailwindcss/vite": "^4.1.11",
+    "@tanstack/react-query": "^5.81.5",
     "axios": "^1.10.0",
     "firebase": "^11.10.0",
     "framer-motion": "^12.23.0",

@@ -12,6 +12,8 @@ import Register from '../Pages/Authentication/Register';
 import Login from '../Pages/Authentication/Login';
 import DashBoardLayout from '../DashBoard/DashBoardLayout';
 import AddProduct from '../DashBoard/AddProduct/AddProduct';
+import MyProduct from '../DashBoard/MyProduct/MyProduct';
+
 
 
 
@@ -50,6 +52,10 @@ import AddProduct from '../DashBoard/AddProduct/AddProduct';
       {
         path:"addProduct",
         Component:AddProduct
+      },
+      {
+        path:"myProduct",
+        Component:MyProduct
       }
     ]
     
