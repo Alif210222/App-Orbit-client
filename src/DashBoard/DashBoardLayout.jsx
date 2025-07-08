@@ -13,17 +13,17 @@ const DashBoardLayout = () => {
     return (
        <div className="drawer lg:drawer-open  bg-gradient-to-br from-[#5f2701] via-[#311701] to-[#100700] ">
   <input id="my-drawer-2" type="checkbox" className="drawer-toggle " />
-  <div className="drawer-content flex flex-col bg-gradient-to-br from-[#1a0b00] via-[#1c0e00] to-[#100700] ">
+  <div className="drawer-content flex flex-col bg-gradient-to-br from-[#1a0b00] via-[#060300] to-[#100700] ">
 
             {/* Navbar */}
-    <div className="navbar bg-[#231101] w-full lg:hidden">
+    <div className="navbar  w-full lg:hidden">
       <div className="flex-none ">
         <label htmlFor="my-drawer-2" aria-label="open sidebar" className="btn btn-square btn-ghost ">
           <svg
             xmlns="http://www.w3.org/2000/svg"
             fill="none"
-            viewBox="0 0 24 24"
-            className="inline-block h-6 w-6 stroke-current"
+            viewBox="0 0 24 22"
+            className="inline-block h-6 w-8  mt-10 stroke-current text-white"
           >
             <path
               strokeLinecap="round"
@@ -74,7 +74,7 @@ const DashBoardLayout = () => {
         </NavLink>
       </li>
       <li className='text-white text-lg font-medium'>
-        <NavLink to="/dashboard/paymentHistory">
+        <NavLink to="/dashboard/myProduct">
           <FaHistory className="inline mr-2" />
            My Product
         </NavLink>

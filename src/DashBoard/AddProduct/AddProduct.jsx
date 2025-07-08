@@ -2,25 +2,33 @@ import React, { use, useState } from 'react';
 import { AuthContext } from '../../Context/AuthContext';
 import { useForm } from 'react-hook-form';
 import { WithContext as ReactTags } from "react-tag-input";
-
-
+import Swal from "sweetalert2";
+import { useNavigate } from 'react-router';
+import useAxiosSecure from '../../hooks/useAxiosSecure';
+import axios from 'axios';
 
 const KeyCodes = {
   comma: 188,
   enter: 13,
 };
-
 const delimiters = [KeyCodes.comma, KeyCodes.enter];
 
 
 
 const AddProduct = () => {
-
-      const {user} = use(AuthContext)
+      const {user,loading} = use(AuthContext)
+    //   console.log(user)
       const {register,handleSubmit,formState: { errors }, reset} = useForm()
       const [tags,setTags] = useState([])
+      const navigate = useNavigate()
+      const axiosSecure = useAxiosSecure()
+      const [productImage,setProductImage] = useState("")
 
+    
 
+    //   if(loading) return <p>loading......</p>
+
+//handle delete tag
 const handleDelete = (i) => {
     setTags(tags.filter((tag, index) => index !== i));
   };
@@ -38,13 +46,67 @@ const handleDelete = (i) => {
 
 
 
+  
+
+
+
 
 
 
       const onSubmit = async(data)=>{
-        
-         console.log(data)
 
+        // console.log(data)
+        // console.log(user)
+        
+      const productData = {
+      productName: data.productName,   
+      description: data.description,
+      externalLink: data.externalLink,
+      tags: tags.map(tag => tag.text),  
+      product_status:"pending",
+      ownerName: user.displayName,
+      ownerEmail: user.email,
+      ownerImage: user.photoURL,
+      createdAt: new Date().toISOString(),
+      image: productImage,
+    };
+
+
+    // console.log(productData)
+
+      axiosSecure.post("/products", productData)
+      .then(res =>{
+         console.log(res.data)
+
+          if (res.data.insertedId) {
+        console.log("data inserted")
+         Swal.fire({
+                 icon: "success",
+                 title: "product Added Successful",
+                 text: "Your product information has been saved successfully.",
+            })
+        // reset();
+        // navigate("/my-products");
+      }
+
+      })
+
+      }
+
+
+
+      // upload image 
+        const handleImageUpload= async(e) =>{
+        // e.preventDefault()
+
+        const image  = e.target.files[0];
+        // console.log(image)
+        const formData = new FormData();
+        formData.append("image", image)
+
+        const res = await axios.post(`https://api.imgbb.com/1/upload?expiration=600&key=${import.meta.env.VITE_image_upload_key}`, formData) 
+        console.log(res.data.data.url)
+        setProductImage(res.data.data.url)
       }
 
 
@@ -72,11 +134,13 @@ const handleDelete = (i) => {
           <label className="font-medium">Product Image URL *</label>
           <input
           type="file"
-            {...register("image", { required: true })}
+          name="image"
+          onChange={handleImageUpload}
+            // {...register("image", { required: true })}
             className="w-full mt-1 px-4 py-2 border rounded"
             placeholder="Enter image URL"
           />
-          {errors.image && <p className="text-red-500 text-sm">This field is required</p>}
+          {/* {errors.image && <p className="text-red-500 text-sm">This field is required</p>} */}
         </div>
 
         {/* Description */}
@@ -104,7 +168,7 @@ const handleDelete = (i) => {
             inputFieldPosition="bottom"
             autocomplete
             placeholder="Enter tags"
-            classNames=""
+            
             
           />
         </div>
