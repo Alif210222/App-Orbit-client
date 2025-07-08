@@ -10,6 +10,8 @@ import Product from '../Pages/Product/Product';
 import About from '../Pages/About/About';
 import Register from '../Pages/Authentication/Register';
 import Login from '../Pages/Authentication/Login';
+import DashBoardLayout from '../DashBoard/DashBoardLayout';
+import AddProduct from '../DashBoard/AddProduct/AddProduct';
 
 
 
@@ -41,6 +43,18 @@ import Login from '../Pages/Authentication/Login';
     }
    ]
   },
+  {
+    path:"/dashboard",
+    Component:DashBoardLayout,
+    children:[
+      {
+        path:"addProduct",
+        Component:AddProduct
+      }
+    ]
+    
+    
+  }
 ]);
 
 
