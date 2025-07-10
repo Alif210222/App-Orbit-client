@@ -6,7 +6,7 @@ import { AuthContext } from '../../Context/AuthContext';
 const Navbar = () => {
      const {user,logOut,loading} = use(AuthContext)
 
-     if(loading) return <p>loading....</p>
+    //  if(loading) return <p>loading....</p>
 
 
          const links = < >

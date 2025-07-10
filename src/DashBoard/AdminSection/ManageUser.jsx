@@ -1,10 +1,89 @@
-import React from 'react';
+import { useQuery } from '@tanstack/react-query';
+import React, { use } from 'react';
+import useAxiosSecure from '../../hooks/useAxiosSecure';
+import { Link } from 'react-router';
+import { AuthContext } from '../../Context/AuthContext';
+import Swal from 'sweetalert2';
 
 const ManageUser = () => {
+    const axiosSecure = useAxiosSecure()
+    const {user} = use(AuthContext)
+
+    const {data: users = [],isLoading,refetch} = useQuery({
+        queryKey:["all-user"],
+        queryFn:  async () =>{
+            const res = await axiosSecure.get("/users")
+            return res.data;
+        }
+    })
+
+
+    const handleStatusUpdate =async (id,status)=>{
+
+       const response =  await axiosSecure.patch(`/users/${id}/role`,{
+        role: status, 
+       })
+       refetch()
+       if (response.data.modifiedCount > 0) {
+               Swal.fire('✅ Success', 'User promoted to admin!', 'success');
+               
+             }else {
+             Swal.fire('❌ Error', 'Failed to promote user', 'error');
+             }
+
+    }
+
+
+   {isLoading && <p>loading user...........</p>}
+
+
     return (
-        <div className='text-white'>
-            this is managae user !
-        </div>
+        <div className="max-w-7xl mt-10 px-4 text-white">
+      <h2 className="text-3xl font-bold mb-6 text-center">All Users</h2>
+      <div className="overflow-x-auto rounded-lg bg-white/10 backdrop-blur-md shadow-md border border-white/20">
+        <table className="table w-full text-white bg-white/20">
+          <thead>
+            <tr className="text-left text-white bg-white/20">
+              <th>#</th>
+              <th>User Name</th>
+              <th>User Email</th>
+              <th>User Role</th>
+              <th>Make Moderator</th>
+              <th>Make Admin</th>
+          
+            </tr>
+          </thead>
+          <tbody>
+            {users.map((userData, index) => (
+              <tr key={userData._id} className="hover:bg-white/5">
+                <td>{index + 1}</td>
+                <td>{userData.userName}</td>
+                <td className="capitalize">{userData.email}</td>
+                <td>{userData.role}</td>
+                <td>
+                  <button
+                    onClick={() => handleStatusUpdate(userData._id,"moderator")}
+                    className="btn btn-sm btn-warning"
+                  >
+                    Moderator
+                  </button>
+                </td>
+                <td>
+                  <button
+                    onClick={() => handleStatusUpdate(userData._id, 'admin')}
+                    className="btn btn-sm btn-success"
+                    disabled={userData.product_status === 'accepted'}
+                  >
+                    Admin
+                  </button>
+                </td>
+              
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+    </div>
     );
 };
 

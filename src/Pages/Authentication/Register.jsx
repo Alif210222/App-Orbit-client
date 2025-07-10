@@ -16,7 +16,7 @@ const  Register =()=> {
    const navigate = useNavigate()
    const axiosSecure = useAxiosSecure()
 
-   console.log(profilePic)
+  //  console.log(profilePic)
 
 
 
@@ -32,10 +32,12 @@ const  Register =()=> {
     // TODO: send data to your server / firebase
          createUser(email,pass)
          .then( async(res) => {
-              console.log(res.user)
+              // console.log(res.user)
 
          //user data send to database 
         const userInfo = {
+
+          userName:displayName,
           email:email,
           role:"user",
           created_at:new Date().toISOString(),
