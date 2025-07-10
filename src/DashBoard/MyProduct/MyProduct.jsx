@@ -4,6 +4,7 @@ import useAxiosSecure from '../../hooks/useAxiosSecure';
 import { toast } from 'react-toastify';
 import { AuthContext } from '../../Context/AuthContext';
 import { Link } from 'react-router';
+import Swal from 'sweetalert2';
 
 const MyProduct = () => {
   const { user } = use(AuthContext);
@@ -11,7 +12,7 @@ const MyProduct = () => {
   const queryClient = useQueryClient();
 
   // Fetch products
-  const { data: products = [], isLoading } = useQuery({
+  const { data: products = [], isLoading, refetch } = useQuery({
     queryKey: ['my-products', user?.email],
     queryFn: async () => {
       const res = await axiosSecure.get(`/products?email=${user?.email}`);
@@ -21,27 +22,55 @@ const MyProduct = () => {
   });
 
 
+// handle update 
+
+ 
 
 
 
-  // Delete mutation
-//   const deleteMutation = useMutation({
-//     mutationFn: async (id) => {
-//       return await axiosSecure.delete(`/products/${id}`);
-//     },
-//     onSuccess: () => {
-//       toast.success('Product deleted successfully');
-//       queryClient.invalidateQueries(['my-products', user?.email]);
-//     },
-//     onError: () => {
-//       toast.error('Failed to delete product');
-//     },
-//   });
 
+
+
+
+//   Delete mutation
+  const handleDelete = async (id) => {
+         Swal.fire({
+                   title: "Are you sure?",
+                   text: "You want to delete this product!",
+                   icon: "warning",
+                   showCancelButton: true,
+                   confirmButtonColor: "#3085d6",
+                   cancelButtonColor: "#d33",
+                   confirmButtonText: "Yes, delete it!"
+                 })
+                 .then((result) =>{
+                     if(result.isConfirmed){
+                        axiosSecure.delete(`/deleteProduct/${id}`)
+                        .then(res=>{
+                            if(res.data.deleteCount){
+                            Swal.fire({
+                            title: "Deleted!",
+                            text: "Your post has been deleted.",
+                            icon: "success"
+                            });
+                            }
+
+                            refetch();
+                        })
+                     }
+
+
+                 })
+  };
+
+
+
+
+  
   if (isLoading) return <p className="text-center text-white mt-10">Loading your products...</p>;
 
   return (
-    <div className="max-w-7xl  mt-10 p-4 border-2 ">
+    <div className="max-w-7xl  mt-10 p-6  ">
       <h2 className="text-3xl font-bold text-white mb-6 text-center">My Products</h2>
 
       <div className="overflow-x-auto rounded-lg bg-white/10 backdrop-blur-md shadow-lg border border-white/20">
@@ -82,7 +111,7 @@ const MyProduct = () => {
                     Update
                   </Link>
                   <button
-                    onClick={() => deleteMutation.mutate(product._id)}
+                    onClick={() =>handleDelete(product._id)}
                     className="px-4 py-2 bg-red-600 hover:bg-red-700 text-white rounded-md"
                   >
                     Delete

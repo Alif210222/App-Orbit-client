@@ -8,7 +8,7 @@ const Root = () => {
 
 
     return (
-        <div className=''>
+        <div className='bg-gradient-to-br from-[#0a0400] via-[#231101] to-[#020018]'>
             <Navbar></Navbar>
 
 

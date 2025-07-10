@@ -168,6 +168,13 @@ const handleDelete = (i) => {
             inputFieldPosition="bottom"
             autocomplete
             placeholder="Enter tags"
+            classNames={{
+              tags: 'border rounded px-2 py-1  text-white',
+              tagInputField: 'w-full border-none outline-none px-2 py-1',
+              selected: 'flex flex-wrap gap-2',
+              tag: 'bg-blue-500 text-white px-2 py-1 rounded',
+              remove: 'ml-2 cursor-pointer text-sm',
+            }}
             
             
           />

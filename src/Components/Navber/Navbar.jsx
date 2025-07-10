@@ -20,7 +20,7 @@ const Navbar = () => {
 
 
     return (
-     <div className="navbar bg-gradient-to-r from-[#0a0400] via-[#442200]   to-[#070000] shadow-sm px-20 py-4">
+     <div className="navbar bg-gradient-to-r from-[#0a0400] via-[#321900]   to-[#070000] shadow-sm px-20 py-4">
    <div className="navbar-start">
     <div className="dropdown">
       <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">

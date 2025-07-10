@@ -1,14 +1,31 @@
 import React from 'react';
 import { motion } from "framer-motion";
+import bannerOne from "../../../assets/about1.png"
 
 const Banner = () => {
     return (
-        <div className="min-h-screen bg-gradient-to-br from-[#0a0400] via-[#231101] to-[#020018] flex items-center justify-center text-center px-6">
+      <div className='bg-gradient-to-br from-[#0a0400] via-[#231101] to-[#020018] relative'>
+        
+        {/* <motion.div className='absolute  ml-20 mt-20' 
+        initial={{ opacity: 0, y: 60 }}
+               animate={{ opacity: 1, y: 0 }}
+               transition={{ duration: 0.9, ease: "easeOut" }}
+        
+        >
+            <img src={bannerOne} alt="" />
+        </motion.div> */}
+
+   
+        <div className="min-h-screen  flex items-center justify-center text-center px-6">
+       
+ 
   <motion.div className="max-w-3xl"
               initial={{ opacity: 0, y: 80 }}
                animate={{ opacity: 1, y: 0 }}
                transition={{ duration: 0.9, ease: "easeOut" }}
   >
+  
+
     <h1 className="text-4xl md:text-5xl font-medium text-white mb-6 ">
       Transform your business with the power <span className='class="text-4xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-[#c05006] via-[#454067] to-[#1f0fd0] '>of tech products. </span> 
     </h1>
@@ -26,6 +43,7 @@ const Banner = () => {
     </div>
   </motion.div>
 </div>
+  </div>
 
     );
 };

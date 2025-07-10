@@ -34,7 +34,7 @@ const DashBoardLayout = () => {
           </svg>
         </label>
       </div>
-      <div className="mx-2 flex-1 px-2 ">Dashboard</div>
+      <div className="mx-2 flex-1 px-2 mt-10 text-lg text-white">Dashboard</div>
       
     </div>
  
@@ -67,6 +67,12 @@ const DashBoardLayout = () => {
           Home
         </Link>
       </li>
+        <li className='text-white text-lg font-medium'>
+        <NavLink to="/dashboard/myProfile">
+          <FaUserEdit className="inline mr-2" />
+          My Profile
+        </NavLink>
+      </li>
       <li className='text-white text-lg font-medium'>
         <NavLink to="/dashboard/addProduct">
           <FaBox className="inline mr-2" />
@@ -79,12 +85,33 @@ const DashBoardLayout = () => {
            My Product
         </NavLink>
       </li >
-        <li className='text-white text-lg font-medium'>
-        <NavLink to="/dashboard/profile">
-          <FaUserEdit className="inline mr-2" />
-          My Profile
+      
+
+   {/* moderator section  */}
+
+       <li className='text-white text-lg font-medium'>
+        <NavLink to="/dashboard/productReview">
+          <FaHistory className="inline mr-2" />
+         Product Review Queue
         </NavLink>
-      </li>
+        </li >
+        <li className='text-white text-lg font-medium'>
+        <NavLink to="/dashboard/reportedProduct">
+          <FaHistory className="inline mr-2" />
+           Reported Product 
+        </NavLink>
+        </li >
+
+
+
+
+      
+
+
+
+
+
+
 
       {/* riders route  */}
 

@@ -13,6 +13,9 @@ import Login from '../Pages/Authentication/Login';
 import DashBoardLayout from '../DashBoard/DashBoardLayout';
 import AddProduct from '../DashBoard/AddProduct/AddProduct';
 import MyProduct from '../DashBoard/MyProduct/MyProduct';
+import MyProfile from '../DashBoard/MyProfile/MyProfile';
+import UpdateProduct from '../DashBoard/MyProduct/UpdateProduct';
+import ProductReview from '../DashBoard/ProductReview/ProductReview';
 
 
 
@@ -30,6 +33,12 @@ import MyProduct from '../DashBoard/MyProduct/MyProduct';
         path:"product",
         Component:Product
     },
+      {
+       path:"/update-product/:id",
+       Component:UpdateProduct,
+       
+      },
+     
     {
         path:"about",
         Component:About
@@ -56,7 +65,17 @@ import MyProduct from '../DashBoard/MyProduct/MyProduct';
       {
         path:"myProduct",
         Component:MyProduct
-      }
+      },
+      {
+        path:"myProfile",
+        Component:MyProfile
+      },
+     
+      {
+        path:"productReview",
+        Component:ProductReview
+      },
+     
     ]
     
     
