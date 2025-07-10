@@ -22,7 +22,7 @@ const  Register =()=> {
 
 
   // handle submit form
-  const onSubmit = (data) => {
+  const onSubmit =async (data) => {
     // console.log("Registration Data:", data);
             
     const email = data.email;
@@ -84,7 +84,7 @@ const handleImageUpload = async(e) =>{
         const formData = new FormData();
         formData.append("image", image)
 
-         const res = await axios.post(`https://api.imgbb.com/1/upload?expiration=600&key=${import.meta.env.VITE_image_upload_key}`, formData) 
+         const res = await axios.post(`https://api.imgbb.com/1/upload?key=${import.meta.env.VITE_image_upload_key}`, formData) 
         console.log(res.data.data.url)
         setProfilePic(res.data.data.url)
 

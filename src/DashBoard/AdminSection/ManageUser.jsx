@@ -25,7 +25,7 @@ const ManageUser = () => {
        })
        refetch()
        if (response.data.modifiedCount > 0) {
-               Swal.fire('✅ Success', 'User promoted to admin!', 'success');
+               Swal.fire('✅ Success', 'User status updated!', 'success');
                
              }else {
              Swal.fire('❌ Error', 'Failed to promote user', 'error');
@@ -58,12 +58,13 @@ const ManageUser = () => {
               <tr key={userData._id} className="hover:bg-white/5">
                 <td>{index + 1}</td>
                 <td>{userData.userName}</td>
-                <td className="capitalize">{userData.email}</td>
-                <td>{userData.role}</td>
+                <td >{userData.email}</td>
+                <td className='capitalize'>{userData.role}</td>
                 <td>
                   <button
                     onClick={() => handleStatusUpdate(userData._id,"moderator")}
-                    className="btn btn-sm btn-warning"
+                    className="btn btn-sm btn-warning "
+                    disabled={userData.role === 'moderator'}
                   >
                     Moderator
                   </button>
@@ -72,7 +73,7 @@ const ManageUser = () => {
                   <button
                     onClick={() => handleStatusUpdate(userData._id, 'admin')}
                     className="btn btn-sm btn-success"
-                    disabled={userData.product_status === 'accepted'}
+                    disabled={userData.role === 'admin'}
                   >
                     Admin
                   </button>
