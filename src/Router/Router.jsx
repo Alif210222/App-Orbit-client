@@ -16,6 +16,8 @@ import MyProduct from '../DashBoard/MyProduct/MyProduct';
 import MyProfile from '../DashBoard/MyProfile/MyProfile';
 import UpdateProduct from '../DashBoard/MyProduct/UpdateProduct';
 import ProductReview from '../DashBoard/ProductReview/ProductReview';
+import ReportedProduct from '../DashBoard/ReportedProduct/ReportedProduct';
+import ManageUser from '../DashBoard/AdminSection/ManageUser';
 
 
 
@@ -75,6 +77,15 @@ import ProductReview from '../DashBoard/ProductReview/ProductReview';
         path:"productReview",
         Component:ProductReview
       },
+     
+      {
+        path:"reportedProduct",
+        Component:ReportedProduct
+      },
+      {
+        path:"manageUser",
+        Component:ManageUser
+      }
      
     ]
     

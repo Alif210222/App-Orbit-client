@@ -3,6 +3,7 @@ import { useForm } from "react-hook-form";
 import { Link, useNavigate } from "react-router";
 import { AuthContext } from "../../Context/AuthContext";
 import axios from 'axios';
+import useAxiosSecure from "../../hooks/useAxiosSecure";
 
 
 
@@ -13,6 +14,7 @@ const  Register =()=> {
   const {createUser,updateUserProfile} = use(AuthContext)
    const [profilePic, setProfilePic] = useState('')
    const navigate = useNavigate()
+   const axiosSecure = useAxiosSecure()
 
    console.log(profilePic)
 
@@ -26,11 +28,25 @@ const  Register =()=> {
     const email = data.email;
     const pass = data.password;
     const displayName = data.name;
-    console.log(email,pass,displayName)
+    // console.log(email,pass,displayName)
     // TODO: send data to your server / firebase
          createUser(email,pass)
-         .then(res => {
+         .then( async(res) => {
               console.log(res.user)
+
+         //user data send to database 
+        const userInfo = {
+          email:email,
+          role:"user",
+          created_at:new Date().toISOString(),
+          last_log_in:new Date().toISOString(),
+        }
+         
+        // console.log(userInfo)
+
+        const userResult = await axiosSecure.post("/users",userInfo)
+        console.log(userResult.data)
+
 
 
         // user profile update 
