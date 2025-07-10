@@ -45,17 +45,25 @@ const ProductReview = () => {
 
 
 
-  const handleMakeFeatured = async (id) => {
+  const handleMakeFeatured = async (id,status) => {
     try {
-      const res = await axiosSecure.patch(`/make-featured/${id}`);
+      const res = await axiosSecure.patch(`/make-featured/${id}`,{
+         featured_status: status,
+      });
       if (res.data.modifiedCount > 0) {
-        toast.success('Marked as Featured');
+         Swal.fire({
+                                   title: "updated!",
+                                   text: "Featured status updated.",
+                                   icon: "success"
+                                   });
         queryClient.invalidateQueries({ queryKey: ['all-products'] });
       }
     } catch (err) {
       toast.error('Failed to mark as featured');
     }
   };
+
+
 
   if (isLoading) return <p className="text-white text-center mt-6">Loading...</p>;
 
@@ -88,8 +96,9 @@ const ProductReview = () => {
                 </td>
                 <td>
                   <button
-                    onClick={() => handleMakeFeatured(product._id)}
+                    onClick={() => handleMakeFeatured(product._id,"featured")}
                     className="btn btn-sm btn-warning"
+                     disabled={product.featured_status === 'featured'}
                   >
                     Feature
                   </button>

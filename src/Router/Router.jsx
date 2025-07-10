@@ -18,6 +18,7 @@ import UpdateProduct from '../DashBoard/MyProduct/UpdateProduct';
 import ProductReview from '../DashBoard/ProductReview/ProductReview';
 import ReportedProduct from '../DashBoard/ReportedProduct/ReportedProduct';
 import ManageUser from '../DashBoard/AdminSection/ManageUser';
+import ProductDetails from '../Pages/ProductDetails/ProductDetails';
 
 
 
@@ -34,6 +35,10 @@ import ManageUser from '../DashBoard/AdminSection/ManageUser';
     {
         path:"product",
         Component:Product
+    },
+    {
+        path:"productDetails",
+        Component:ProductDetails
     },
       {
        path:"/update-product/:id",

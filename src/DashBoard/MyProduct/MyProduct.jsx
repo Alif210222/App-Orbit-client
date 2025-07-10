@@ -88,11 +88,11 @@ const MyProduct = () => {
             {products.map((product, index) => (
               <tr key={product._id}>
                 <td>{index + 1}</td>
-                <td>{product.productName}</td>
-                <td>{product.votes || 0}</td>
+                <td className='capitalize'>{product.productName}</td>
+                <td>{product.vote_count || 0}</td>
                 <td>
                   <span
-                    className={`px-3   py-2 rounded-xl text-sm font-medium ${
+                    className={`px-3   py-2 rounded-xl text-sm font-medium capitalize ${
                       product.product_status === 'accepted'
                         ? 'bg-green-600'
                         : product.product_status === 'rejected'

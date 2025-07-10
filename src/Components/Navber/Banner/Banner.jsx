@@ -4,8 +4,8 @@ import bannerOne from "../../../assets/about1.png"
 
 const Banner = () => {
     return (
-      <div className='bg-gradient-to-br from-[#0a0400] via-[#231101] to-[#020018] relative'>
-        
+      <div className=''>
+
         {/* <motion.div className='absolute  ml-20 mt-20' 
         initial={{ opacity: 0, y: 60 }}
                animate={{ opacity: 1, y: 0 }}
