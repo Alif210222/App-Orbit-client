@@ -23,7 +23,7 @@ export default function Login() {
     loginUser(email, password)
       .then((result) => {
         // console.log("User logged in:", result.user);
-         toast("Registation Successful!") 
+         toast("Login Successful!") 
 
         navigate("/"); // Redirect to homepage
 

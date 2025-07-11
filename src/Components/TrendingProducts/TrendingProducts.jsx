@@ -1,0 +1,105 @@
+import React, { useEffect, useState, useContext } from 'react';
+import { Link, useNavigate } from 'react-router';
+import { AuthContext } from '../../Context/AuthContext';
+import { FaHeart } from 'react-icons/fa';
+import useAxiosSecure from '../../hooks/useAxiosSecure';
+
+const TrendingProducts = () => {
+  const [products, setProducts] = useState([]);
+  const { user } = useContext(AuthContext);
+  const navigate = useNavigate();
+  const axiosSecure = useAxiosSecure();
+
+  useEffect(() => {
+    fetch('http://localhost:4000/trending-products')
+      .then(res => res.json())
+      .then(data => {
+        const sorted = data
+          .sort((a, b) => (b.vote_count || 0) - (a.vote_count || 0))
+          .slice(0, 6); // top 6 products
+        setProducts(sorted);
+      });
+  }, []);
+
+  const handleUpvote = async (productId) => {
+    if (!user) return navigate('/login');
+
+    try {
+      const res = await axiosSecure.patch(`/upvote/${productId}`, {
+        userEmail: user.email,
+      });
+
+      if (res.data.modifiedCount > 0) {
+        setProducts(prev =>
+          prev.map(p =>
+            p._id === productId
+              ? { ...p, vote_count: (p.vote_count || 0) + 1, voted: true }
+              : p
+          )
+        );
+      }
+    } catch (err) {
+      console.error('Upvote failed', err);
+    }
+  };
+
+  return (
+    <div className="max-w-7xl mx-auto px-4 py-10">
+      <h2 className="text-3xl font-bold text-center text-white mb-8">Trending Products</h2>
+
+      <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+        {products.map(product => (
+          <div key={product._id} className="bg-white/10 backdrop-blur-md border border-white/20 rounded-xl shadow-lg overflow-hidden text-white">
+            <img
+              src={product.image || 'https://via.placeholder.com/400x200?text=No+Image'}
+              alt={product.productName}
+              className="w-full h-48 object-cover"
+            />
+            <div className="p-4">
+              <Link
+                to={`/productDetails/${product._id}`}
+                className="text-xl font-semibold hover:underline capitalize block"
+              >
+                {product.productName}
+              </Link>
+
+              <div className="mt-2 flex flex-wrap gap-2">
+                {product.tags.map((tag, idx) => (
+                  <span key={idx} className="bg-orange-500 text-xs px-2 py-1 rounded-full">#{tag}</span>
+                ))}
+              </div>
+
+              <div className="mt-4 flex justify-between items-center">
+                <button
+                  onClick={() => handleUpvote(product._id)}
+                  className="flex items-center gap-1 text-white bg-red-600 hover:bg-red-700 px-3 py-1.5 rounded-lg disabled:opacity-50"
+                  disabled={user?.email === product.ownerEmail || product.voted}
+                >
+                  <FaHeart className="text-lg" /> {product.vote_count || 0}
+                </button>
+
+                <img
+                  src={product.ownerImage || 'https://i.ibb.co/4pDNDk1/default-user.png'}
+                  alt={product.ownerName}
+                  className="w-8 h-8 rounded-full border-2 border-white"
+                  title={product.ownerName}
+                />
+              </div>
+            </div>
+          </div>
+        ))}
+      </div>
+
+      <div className="flex justify-center mt-10">
+        <Link
+          to="/products"
+          className="bg-blue-600 hover:bg-blue-700 text-white font-semibold px-6 py-2 rounded-lg shadow-md"
+        >
+          Show All Products
+        </Link>
+      </div>
+    </div>
+  );
+};
+
+export default TrendingProducts;

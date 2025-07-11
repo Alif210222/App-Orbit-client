@@ -9,6 +9,9 @@ const Homepage = () => {
 
 
            <FeaturedProduct></FeaturedProduct>
+
+
+           
         </div>
     );
 };
