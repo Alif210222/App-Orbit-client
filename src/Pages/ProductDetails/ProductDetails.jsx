@@ -53,6 +53,7 @@ const ProductDetails = () => {
       const res = await axiosSecure.patch(`/report/${id}`, {
         userEmail: user.email,
         report_status: status,
+        
       });
 
       if (res.data.modifiedCount > 0) {
@@ -71,7 +72,7 @@ const ProductDetails = () => {
     }
   };
 
-  
+
   if (!product) return <p className="text-white text-center mt-20">Loading...</p>;
 
   return (
@@ -118,8 +119,9 @@ const ProductDetails = () => {
           </button>
 
           <button
-            onClick={() => handleReport(product._id , "reported")  }
+            onClick={() => handleReport(product._id,"reported" )}
             className="flex items-center gap-2 bg-yellow-500 hover:bg-yellow-600 px-4 py-2 rounded-lg"
+            disabled={product.report_status === 'reported'}
           >
             <FaFlag /> Report Product
           </button>
