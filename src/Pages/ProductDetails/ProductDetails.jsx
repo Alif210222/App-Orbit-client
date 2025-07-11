@@ -6,6 +6,7 @@ import { AuthContext } from '../../Context/AuthContext';
 import useAxiosSecure from '../../hooks/useAxiosSecure';
 import { FaHeart, FaFlag } from 'react-icons/fa';
 import Swal from 'sweetalert2';
+import AddReview from './AddReview';
 
 const ProductDetails = () => {
   const { id } = useParams();
@@ -76,7 +77,12 @@ const ProductDetails = () => {
   if (!product) return <p className="text-white text-center mt-20">Loading...</p>;
 
   return (
-    <div className="max-w-5xl mx-auto px-6 py-10 text-white min-h-screen ">
+    <div className='min-h-screen max-w-6xl mx-auto px-6 py-10'>
+
+  
+    <div className="max-w-5xl mx-auto px-6 py-10 text-white  ">
+
+         <h2 className="text-3xl font-bold text-white mb-6 text-center">Product Details</h2>
       <div className= " md:flex gap-6  bg-blue-950 p-6 rounded-lg shadow-lg border border-white/20 ">
        <div> 
              <img src={product.image} alt={product.productName} className="w-full h-72 object-cover rounded-lg mb-6" />
@@ -95,8 +101,8 @@ const ProductDetails = () => {
         <div className='mt-10'>
             <p className="text-lg font-semibold  text-gray-300" >Added By : <span className='font-normal'>{product.ownerName}  </span> </p>
         </div>
-       <p className="text-lg font-semibold  text-gray-300" >Votes : <span className='font-normal'>{product.vote_count}  </span> </p>
-       <p className="text-lg font-semibold mb-3  text-gray-300" >Report Count : <span className='font-normal'> {product.report_count || 0}  </span> </p>
+       <p className="text-lg font-semibold mb-4 text-gray-300" >Votes : <span className='font-normal'>{product.vote_count}  </span> </p>
+       {/* <p className="text-lg font-semibold mb-3  text-gray-300" >Report Count : <span className='font-normal'> {product.report_count || 0}  </span> </p> */}
 <div className='flex justify-between gap-21 items-center'>
   
         <a
@@ -127,11 +133,24 @@ const ProductDetails = () => {
           </button>
         </div>
 
-</div>
+          </div>
        </div>
+    </div>   
+ </div>
+                                                {/* product review section */}
+     
+     <p className='text-white'>product review</p>
+
+                                                 {/* review add section  */}
+
+                <div className='max-w-xl mx-auto'>
+
+                     <h2 className="text-3xl font-bold text-white mb-6 text-center">Add Review</h2>
+                    <AddReview></AddReview>
+                    
+                </div>            
+
       </div>
-        
-    </div>
   );
 };
 
