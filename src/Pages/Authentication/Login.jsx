@@ -5,6 +5,7 @@ import { use, useState } from "react";
 import { auth } from "../../Firebase/firebase.init";
 import { AuthContext } from "../../Context/AuthContext";
 import { Link, useNavigate } from "react-router";
+import { toast } from "react-toastify";
 
 export default function Login() {
   const {register,handleSubmit,formState: { errors },} = useForm();
@@ -21,7 +22,8 @@ export default function Login() {
 
     loginUser(email, password)
       .then((result) => {
-        console.log("User logged in:", result.user);
+        // console.log("User logged in:", result.user);
+         toast("Registation Successful!") 
 
         navigate("/"); // Redirect to homepage
 

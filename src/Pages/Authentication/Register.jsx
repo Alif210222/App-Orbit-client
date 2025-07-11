@@ -4,6 +4,7 @@ import { Link, useNavigate } from "react-router";
 import { AuthContext } from "../../Context/AuthContext";
 import axios from 'axios';
 import useAxiosSecure from "../../hooks/useAxiosSecure";
+import { toast } from "react-toastify";
 
 
 
@@ -65,6 +66,7 @@ const  Register =()=> {
           .catch(error =>{
             console.log(error)
           })
+           toast("Registation Successful!") 
               // navigate
                navigate("/")
 
