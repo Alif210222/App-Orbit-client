@@ -22,15 +22,15 @@ const AddReview = () => {
       createdAt: new Date().toISOString(),
     };
 
+    console.log(reviewData)
+
     try {
       const res = await axiosSecure.post('/reviews', reviewData);
       if (res.data.insertedId) {
         Swal.fire({
           icon: 'success',
           title: 'Review Submitted',
-          toast: true,
-          position: 'top-end',
-          timer: 2500,
+          timer:2500,
           showConfirmButton: false,
         });
         reset();

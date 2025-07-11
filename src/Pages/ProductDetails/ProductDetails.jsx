@@ -8,6 +8,8 @@ import { FaHeart, FaFlag } from 'react-icons/fa';
 import Swal from 'sweetalert2';
 import AddReview from './AddReview';
 
+import ReviewSlider from './ReviewSlider';
+
 const ProductDetails = () => {
   const { id } = useParams();
   const { user } = useContext(AuthContext);
@@ -80,9 +82,9 @@ const ProductDetails = () => {
     <div className='min-h-screen max-w-6xl mx-auto px-6 py-10'>
 
   
-    <div className="max-w-5xl mx-auto px-6 py-10 text-white  ">
+    <div className="max-w-5xl mx-auto px-6 py-10 mb-20 text-white  ">
 
-         <h2 className="text-3xl font-bold text-white mb-6 text-center">Product Details</h2>
+         <h2 className="text-3xl font-bold text-white mb-14 text-center">Product Details</h2>
       <div className= " md:flex gap-6  bg-blue-950 p-6 rounded-lg shadow-lg border border-white/20 ">
        <div> 
              <img src={product.image} alt={product.productName} className="w-full h-72 object-cover rounded-lg mb-6" />
@@ -139,11 +141,14 @@ const ProductDetails = () => {
  </div>
                                                 {/* product review section */}
      
-     <p className='text-white'>product review</p>
+                 <div className='max-w-md mx-auto mb-36'>
+                    <h2 className="text-3xl font-bold text-white mb-6 text-center ">product Review</h2>
+                    <ReviewSlider productId={id}></ReviewSlider>
+                 </div>
 
                                                  {/* review add section  */}
 
-                <div className='max-w-xl mx-auto'>
+                <div className='max-w-3xl mx-auto'>
 
                      <h2 className="text-3xl font-bold text-white mb-6 text-center">Add Review</h2>
                     <AddReview></AddReview>
