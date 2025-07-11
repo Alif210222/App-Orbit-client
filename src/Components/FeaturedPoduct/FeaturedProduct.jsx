@@ -42,7 +42,7 @@ const FeaturedProducts = () => {
       });
 
       if (res.data.modifiedCount > 0) {
-        setFeaturedProducts((prev) =>
+        setFeaturedProducts( (prev) =>
           prev.map((p) =>
             p._id === productId
               ? { ...p, vote_count: (p.vote_count || 0) + 1, voted: true }
@@ -57,30 +57,32 @@ const FeaturedProducts = () => {
 
 
   return (
-    <div className="max-w-7xl mx-auto px-4 py-10 ">
-      <h2 className="text-3xl font-bold text-center text-white mb-8">
+    <div className="max-w-7xl mx-auto px-4 py-10 ">                    
+      <h2 className="text-3xl font-bold text-center text-white mb-16">
         Featured Products
       </h2>
       <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8 ">
         {featuredProducts.map((product) => (
-          <motion.div
+          <div
             key={product._id}
-            className="bg-white/10 backdrop-blur-md border border-white/20 rounded-xl shadow-lg overflow-hidden"
+            className="bg-gradient-to-br from-[#1a0461] via-[#000000] to-[#431b01] rounded-xl shadow-lg overflow-hidden w-70 h-96 text-center"
           >
+            <div className='flex justify-center p-3'>
             <img
               src={product.image}
               alt={product.productName}
-              className="w-full h-48 object-cover"
+              className="w-40 h-40 object-cover rounded-full "
             />
+             </div>
             <div className="p-4 text-white">
               <Link
                 to={`/productDetails/${product._id}`}
-                className="text-xl font-semibold capitalize hover:underline"
+                className="text-xl font-semibold capitalize hover:underline "
               >
                 {product.productName}
               </Link>
 
-              <div className="mt-2 flex flex-wrap gap-2">
+              <div className="mt-6 flex flex-wrap gap-2 ">
                 {product.tags.map((tag, idx) => (
                   <span
                     key={idx}
@@ -91,7 +93,7 @@ const FeaturedProducts = () => {
                 ))}
               </div>
 
-              <div className="mt-4 flex justify-between items-center">
+              <div className="mt-6 flex justify-between items-center ">
 
                 <button
                   onClick={() => handleUpvote(product._id)}
@@ -101,15 +103,10 @@ const FeaturedProducts = () => {
                   <FaHeart className="text-lg" /> {product.vote_count || 0}
                 </button>
 
-                <img
-                  src={product.ownerImage}
-                  alt={product.ownerName}
-                  className="w-8 h-8 rounded-full border-2 border-white"
-                  title={product.ownerName}
-                />
+                
               </div>
             </div>
-          </motion.div>
+          </div>
         ))}
       </div>
     </div>

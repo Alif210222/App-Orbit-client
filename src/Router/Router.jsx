@@ -37,7 +37,7 @@ import ProductDetails from '../Pages/ProductDetails/ProductDetails';
         Component:Product
     },
     {
-        path:"productDetails",
+        path:"productDetails/:id", 
         Component:ProductDetails
     },
       {
