@@ -13,7 +13,7 @@ const DashBoardLayout = () => {
     return (
        <div className="drawer lg:drawer-open  bg-gradient-to-br from-[#5f2701] via-[#311701] to-[#100700] ">
   <input id="my-drawer-2" type="checkbox" className="drawer-toggle " />
-  <div className="drawer-content flex flex-col bg-gradient-to-br from-[#1a0b00] via-[#060300] to-[#100700] ">
+  <div className="drawer-content min-h-screen flex flex-col bg-gradient-to-br from-[#1a0b00] via-[#060300] to-[#100700] ">
 
             {/* Navbar */}
     <div className="navbar  w-full lg:hidden">
@@ -38,11 +38,13 @@ const DashBoardLayout = () => {
       
     </div>
  
+<div className=''>
+
 
     {/* Page content here */}
       <Outlet></Outlet>
     {/* Page content here */}
-   
+</div>
 
  </div>
   <div className="drawer-side ">

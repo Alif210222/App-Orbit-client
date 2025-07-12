@@ -121,7 +121,7 @@ const ProductDetails = () => {
         <div className='mt-10'>
             <p className="text-lg font-semibold  text-gray-300" >Added By : <span className='font-normal'>{product.ownerName}  </span> </p>
         </div>
-       <p className="text-lg font-semibold mb-4 text-gray-300" >Votes : <span className='font-normal'>{product.vote_count}  </span> </p>
+       <p className="text-lg font-semibold mb-4 text-gray-300" >Votes : <span className='font-normal'>{product.vote_count || 0}  </span> </p>
        {/* <p className="text-lg font-semibold mb-3  text-gray-300" >Report Count : <span className='font-normal'> {product.report_count || 0}  </span> </p> */}
 <div className='flex justify-between gap-21 items-center'>
   
@@ -135,7 +135,7 @@ const ProductDetails = () => {
         </a>
       
 
-        <div className="flex gap-4 justify-between items-center ">
+        <div className="space-y-3 md:flex gap-4 justify-between items-center ">
           <button
             onClick={()=> handleUpvote(product._id)}
             className="flex items-center gap-2 bg-red-600 hover:bg-red-700 px-4 py-2 rounded-lg disabled:opacity-50"

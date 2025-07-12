@@ -3,9 +3,10 @@ import { AuthContext } from '../../Context/AuthContext';
 import { useForm } from 'react-hook-form';
 import { WithContext as ReactTags } from "react-tag-input";
 import Swal from "sweetalert2";
-import { useNavigate } from 'react-router';
+import { Link, useNavigate } from 'react-router';
 import useAxiosSecure from '../../hooks/useAxiosSecure';
 import axios from 'axios';
+import { toast } from 'react-toastify';
 
 const KeyCodes = {
   comma: 188,
@@ -45,14 +46,6 @@ const handleDelete = (i) => {
   };
 
 
-
-  
-
-
-
-
-
-
       const onSubmit = async(data)=>{
 
         // console.log(data)
@@ -79,14 +72,18 @@ const handleDelete = (i) => {
          console.log(res.data)
 
           if (res.data.insertedId) {
-        console.log("data inserted")
-         Swal.fire({
-                 icon: "success",
-                 title: "product Added Successful",
-                 text: "Your product information has been saved successfully.",
-            })
+        // console.log("data inserted")
+        // toast.success('✅ Product added successfully!', {
+        //       position: 'top-center',
+        //       autoClose: 3000,
+        //       hideProgressBar: false,
+        //       closeOnClick: true,
+        //       pauseOnHover: true,
+        //       draggable: true,
+        //       theme: 'colored',
+        //     });
         // reset();
-        // navigate("/my-products");
+        // navigate("/dashboard/myProduct");
       }
 
       })
@@ -224,7 +221,7 @@ const handleDelete = (i) => {
             type="submit"
             className="px-6 py-3 bg-blue-600 hover:bg-blue-700 text-white rounded-lg shadow-md font-semibold transition"
           >
-            Submit Product
+            Submit Product 
           </button>
         </div>
       </form>

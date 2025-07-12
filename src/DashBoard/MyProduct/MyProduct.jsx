@@ -2,7 +2,7 @@ import React, { useContext } from 'react';
 import { useQuery } from '@tanstack/react-query';
 import useAxiosSecure from '../../hooks/useAxiosSecure';
 import { AuthContext } from '../../Context/AuthContext';
-import { Link } from 'react-router'; // ✅ correct import
+import { Link } from 'react-router'; // ✅ use 'react-router-dom'
 import Swal from 'sweetalert2';
 
 const MyProduct = () => {
@@ -24,12 +24,7 @@ const MyProduct = () => {
     enabled: !!user?.email,
   });
 
-  // ✅ Always fallback to an empty array
   const products = Array.isArray(data) ? data : [];
-
-  console.log(products)
-
-
 
   const handleDelete = async (id) => {
     Swal.fire({
@@ -43,13 +38,14 @@ const MyProduct = () => {
     }).then((result) => {
       if (result.isConfirmed) {
         axiosSecure.delete(`/deleteProduct/${id}`).then((res) => {
-          if (res.data.deleteCount) {
+            // console.log(res.data)
+          if (res.data?.deletedCount > 0) {
             Swal.fire({
               title: 'Deleted!',
               text: 'Your product has been deleted.',
               icon: 'success',
             });
-            refetch();
+            refetch(); // ✅ This is correct here
           }
         });
       }
