@@ -65,13 +65,13 @@ const FeaturedProducts = () => {
         {featuredProducts.map((product) => (
           <div
             key={product._id}
-            className="bg-gradient-to-br from-[#1a0461] via-[#000000] to-[#431b01] rounded-xl shadow-lg overflow-hidden w-70 h-96 text-center"
+            className="bg-gradient-to-br from-[#1a0461] via-[#000000] to-[#431b01] rounded-xl shadow-lg overflow-hidden w-70 md:w-full mx-auto h-96 text-center"
           >
             <div className='flex justify-center p-3'>
             <img
               src={product.image}
               alt={product.productName}
-              className="w-40 h-40 object-cover rounded-full "
+              className="w-35 h-35 object-cover rounded-full "
             />
              </div>
             <div className="p-4 text-white">
@@ -82,11 +82,11 @@ const FeaturedProducts = () => {
                 {product.productName}
               </Link>
 
-              <div className="mt-6 flex flex-wrap gap-2 ">
+              <div className="mt-6 flex justify-center flex-wrap gap-2 mb-4">
                 {product.tags.map((tag, idx) => (
                   <span
                     key={idx}
-                    className="bg-orange-500 text-xs px-2 py-1 rounded-full"
+                    className=" bg-orange-500 text-xs px-2 py-1 rounded-full mb-4"
                   >
                     #{tag}
                   </span>
@@ -102,6 +102,13 @@ const FeaturedProducts = () => {
                 >
                   <FaHeart className="text-lg" /> {product.vote_count || 0}
                 </button>
+
+                  <img
+                  src={product.ownerImage || 'https://i.ibb.co/4pDNDk1/default-user.png'}
+                  alt={product.ownerName}
+                  className="w-8 h-8 rounded-full border-2 border-white"
+                  title={product.ownerName}
+                />
 
                 
               </div>

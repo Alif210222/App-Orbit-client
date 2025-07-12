@@ -3,6 +3,7 @@ import { Link, useNavigate } from 'react-router';
 import { AuthContext } from '../../Context/AuthContext';
 import { FaHeart } from 'react-icons/fa';
 import useAxiosSecure from '../../hooks/useAxiosSecure';
+import { motion } from 'framer-motion';
 
 const TrendingProducts = () => {
   const [products, setProducts] = useState([]);
@@ -45,30 +46,65 @@ const TrendingProducts = () => {
 
   return (
     <div className="max-w-7xl mx-auto px-4 py-10">
-      <h2 className="text-3xl font-bold text-center text-white mb-8">Trending Products</h2>
+     <motion.h2
+        className="text-3xl font-bold text-center text-white mt-30 mb-16"
+        initial={{ opacity: 0, y: -30 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.6 }}
+      >
+        Trending Products
+      </motion.h2>
 
-      <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-        {products.map(product => (
-          <div key={product._id} className="bg-white/10 backdrop-blur-md border border-white/20 rounded-xl shadow-lg overflow-hidden text-white">
-            <img
-              src={product.image || 'https://via.placeholder.com/400x200?text=No+Image'}
-              alt={product.productName}
-              className="w-full h-48 object-cover"
-            />
-            <div className="p-4">
+      <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 ">
+        {products.map((product, index ) => (
+          <motion.div key={product._id} 
+           initial={{ opacity: 0, y: 50 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.4, delay: index * 0.1 }}
+          className="bg-gradient-to-br from-[#833004] via-[#272935] to-[#0c1950] border border-white/20 rounded-xl shadow-lg overflow-hidden  text-white">
+          
+           <div className='p-6'>
+            
+            <div className='flex justify-between'>
+      {/* text */}
+        <div className='space-y-4'>
+
+            <div className="p-2">
               <Link
                 to={`/productDetails/${product._id}`}
                 className="text-xl font-semibold hover:underline capitalize block"
               >
                 {product.productName}
               </Link>
+           </div>
 
-              <div className="mt-2 flex flex-wrap gap-2">
+           <div className='w-52'>
+            {product.description}
+           </div>
+        
+
+        
+              <div className="mt-2 flex  flex-wrap gap-2">
                 {product.tags.map((tag, idx) => (
                   <span key={idx} className="bg-orange-500 text-xs px-2 py-1 rounded-full">#{tag}</span>
                 ))}
               </div>
 
+        </div>
+
+   {/* image      */}
+           <div className='flex justify-center p-3'>
+            <img
+              src={product.image || 'https://via.placeholder.com/400x200?text=No+Image'}
+              alt={product.productName}
+              className="w-20 h-20 object-cover rounded-full "
+            />
+        </div>
+
+
+     </div>
+
+     {/* button bottom */}
               <div className="mt-4 flex justify-between items-center">
                 <button
                   onClick={() => handleUpvote(product._id)}
@@ -86,7 +122,7 @@ const TrendingProducts = () => {
                 />
               </div>
             </div>
-          </div>
+          </motion.div>
         ))}
       </div>
 
