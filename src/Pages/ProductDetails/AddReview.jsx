@@ -6,7 +6,7 @@ import { useParams } from 'react-router';
 import useAxiosSecure from '../../hooks/useAxiosSecure';
 import Swal from 'sweetalert2';
 
-const AddReview = () => {
+const AddReview = ({refetch}) => {
   const { user } = useContext(AuthContext);
   const { id: productId } = useParams(); // from URL
   const { register, handleSubmit, reset, formState: { errors } } = useForm();
@@ -33,6 +33,7 @@ const AddReview = () => {
           timer:2500,
           showConfirmButton: false,
         });
+        refetch()
         reset();
       }
     } catch (error) {

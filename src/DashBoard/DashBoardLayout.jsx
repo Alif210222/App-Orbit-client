@@ -103,6 +103,12 @@ const DashBoardLayout = () => {
         </li >
 
     {/* admin section  */}
+     <li className='text-white text-lg font-medium'>
+        <NavLink to="/dashboard/statistics">
+          <FaHistory className="inline mr-2" />
+           Statistics Page
+        </NavLink>
+   </li >
 
    <li className='text-white text-lg font-medium'>
         <NavLink to="/dashboard/manageUser">
@@ -110,6 +116,7 @@ const DashBoardLayout = () => {
            Manage User
         </NavLink>
    </li >
+  
 
 
       

@@ -7,6 +7,7 @@ import useAxiosSecure from '../../hooks/useAxiosSecure';
 import { FaHeart, FaFlag } from 'react-icons/fa';
 import Swal from 'sweetalert2';
 import AddReview from './AddReview';
+import { useQuery } from '@tanstack/react-query';
 
 import ReviewSlider from './ReviewSlider';
 
@@ -14,9 +15,24 @@ const ProductDetails = () => {
   const { id } = useParams();
   const { user } = useContext(AuthContext);
   const [product, setProduct] = useState(null);
+//    const [reviews, setReviews] = useState([]);
   const navigate = useNavigate();
   const axiosSecure = useAxiosSecure();
 
+
+   // product review   get api  
+ const { data: reviews = [], refetch, isLoading } = useQuery({
+  queryKey: ['reviews', id],
+  queryFn: async () => {
+    const res = await axiosSecure.get(`/reviews/${id}`);
+    return res.data;
+  },
+  enabled: !!id, // wait until `id` is available
+});
+
+
+
+  // product details get api 
   useEffect(() => {
     axiosSecure.get(`/productDetails/${id}`)
       .then((res) => setProduct(res.data))
@@ -24,7 +40,9 @@ const ProductDetails = () => {
   }, [id, axiosSecure]);
 
 
+ 
 
+ 
   const handleUpvote = async (id) => {
          console.log("vole")
       
@@ -143,7 +161,7 @@ const ProductDetails = () => {
      
                  <div className='max-w-md mx-auto mb-36'>
                     <h2 className="text-3xl font-bold text-white mb-6 text-center ">product Review</h2>
-                    <ReviewSlider productId={id}></ReviewSlider>
+                    <ReviewSlider productId={id} reviews={reviews}></ReviewSlider>
                  </div>
 
                                                  {/* review add section  */}
@@ -151,7 +169,7 @@ const ProductDetails = () => {
                 <div className='max-w-3xl mx-auto'>
 
                      <h2 className="text-3xl font-bold text-white mb-6 text-center">Add Review</h2>
-                    <AddReview></AddReview>
+                    <AddReview refetch={refetch}></AddReview>
                     
                 </div>            
 

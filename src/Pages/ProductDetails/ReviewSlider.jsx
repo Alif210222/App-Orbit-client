@@ -2,16 +2,16 @@ import React, { useEffect, useState } from 'react';
 import { FaStar, FaArrowLeft, FaArrowRight } from 'react-icons/fa';
 import useAxiosSecure from '../../hooks/useAxiosSecure';
 
-const ReviewSlider = ({ productId }) => {
-  const [reviews, setReviews] = useState([]);
+const ReviewSlider = ({ reviews }) => {
+  // const [reviews, setReviews] = useState([]);
   const [currentIndex, setCurrentIndex] = useState(0);
-  const axiosSecure = useAxiosSecure();
+  // const axiosSecure = useAxiosSecure();
 
-  useEffect(() => {
-    axiosSecure.get(`/reviews/${productId}`)
-      .then(res => setReviews(res.data))
-      .catch(err => console.error('Failed to fetch reviews', err));
-  }, [productId, axiosSecure]);
+  // useEffect(() => {
+  //   axiosSecure.get(`/reviews/${productId}`)
+  //     .then(res => setReviews(res.data))
+  //     .catch(err => console.error('Failed to fetch reviews', err));
+  // }, [productId, axiosSecure]);
 
   const handleNext = () => {
     setCurrentIndex((prev) => (prev + 1) % reviews.length);
