@@ -24,7 +24,7 @@ const Product = () => {
 
   const fetchProducts = async () => {
     try {
-      const res = await axiosSecure.get(`/products?search=${searchTerm}&page=${currentPage}&limit=${limit}`);
+      const res = await axiosSecure.get(`/alProducts?search=${searchTerm}&page=${currentPage}&limit=${limit}`);
       setProducts(res.data.products);
       setTotalPages(res.data.total);
     } catch (error) {

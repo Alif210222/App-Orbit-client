@@ -19,6 +19,7 @@ import ProductReview from '../DashBoard/ProductReview/ProductReview';
 import ReportedProduct from '../DashBoard/ReportedProduct/ReportedProduct';
 import ManageUser from '../DashBoard/AdminSection/ManageUser';
 import ProductDetails from '../Pages/ProductDetails/ProductDetails';
+import StatisticsPage from '../DashBoard/StatisticsPage/StatisticsPage';
 
 
 
@@ -90,6 +91,10 @@ import ProductDetails from '../Pages/ProductDetails/ProductDetails';
       {
         path:"manageUser",
         Component:ManageUser
+      },
+      {
+        path:"statistics",
+        Component:StatisticsPage
       }
      
     ]

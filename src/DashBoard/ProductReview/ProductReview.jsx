@@ -14,7 +14,7 @@ const ProductReview = () => {
   const { data: products = [], isLoading } = useQuery({
     queryKey: ['all-products'],
     queryFn: async () => {
-      const res = await axiosSecure.get('/products');
+      const res = await axiosSecure.get('/reviewProducts');
       const sorted = res.data.sort((a, b) => {
         const order = { pending: 0, accepted: 1, rejected: 2 };
         return order[a.product_status] - order[b.product_status];
@@ -23,6 +23,8 @@ const ProductReview = () => {
     },
   });
 
+
+  console.log(products)
 
 
   const handleStatusUpdate = async (id, status) => {

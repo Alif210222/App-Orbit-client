@@ -1,18 +1,21 @@
-import React, { use } from 'react';
-import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
+import React, { useContext } from 'react';
+import { useQuery } from '@tanstack/react-query';
 import useAxiosSecure from '../../hooks/useAxiosSecure';
-import { toast } from 'react-toastify';
 import { AuthContext } from '../../Context/AuthContext';
-import { Link } from 'react-router';
+import { Link } from 'react-router'; // ✅ correct import
 import Swal from 'sweetalert2';
 
 const MyProduct = () => {
-  const { user } = use(AuthContext);
+  const { user } = useContext(AuthContext);
   const axiosSecure = useAxiosSecure();
-  const queryClient = useQueryClient();
 
-  // Fetch products
-  const { data: products = [], isLoading, refetch } = useQuery({
+  const {
+    data,
+    isLoading,
+    isError,
+    error,
+    refetch
+  } = useQuery({
     queryKey: ['my-products', user?.email],
     queryFn: async () => {
       const res = await axiosSecure.get(`/products?email=${user?.email}`);
@@ -21,61 +24,48 @@ const MyProduct = () => {
     enabled: !!user?.email,
   });
 
+  // ✅ Always fallback to an empty array
+  const products = Array.isArray(data) ? data : [];
 
-// handle update 
-
- 
-
-
+  console.log(products)
 
 
 
-
-
-//   Delete mutation
   const handleDelete = async (id) => {
-         Swal.fire({
-                   title: "Are you sure?",
-                   text: "You want to delete this product!",
-                   icon: "warning",
-                   showCancelButton: true,
-                   confirmButtonColor: "#3085d6",
-                   cancelButtonColor: "#d33",
-                   confirmButtonText: "Yes, delete it!"
-                 })
-                 .then((result) =>{
-                     if(result.isConfirmed){
-                        axiosSecure.delete(`/deleteProduct/${id}`)
-                        .then(res=>{
-                            if(res.data.deleteCount){
-                            Swal.fire({
-                            title: "Deleted!",
-                            text: "Your post has been deleted.",
-                            icon: "success"
-                            });
-                            }
-
-                            refetch();
-                        })
-                     }
-
-
-                 })
+    Swal.fire({
+      title: 'Are you sure?',
+      text: 'You want to delete this product!',
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Yes, delete it!',
+    }).then((result) => {
+      if (result.isConfirmed) {
+        axiosSecure.delete(`/deleteProduct/${id}`).then((res) => {
+          if (res.data.deleteCount) {
+            Swal.fire({
+              title: 'Deleted!',
+              text: 'Your product has been deleted.',
+              icon: 'success',
+            });
+            refetch();
+          }
+        });
+      }
+    });
   };
 
-
-
-
-  
   if (isLoading) return <p className="text-center text-white mt-10">Loading your products...</p>;
+  if (isError) return <p className="text-center text-red-500">Error: {error.message}</p>;
 
   return (
-    <div className="max-w-7xl  mt-10 p-6  ">
+    <div className="max-w-7xl mt-10 p-6">
       <h2 className="text-3xl font-bold text-white mb-6 text-center">My Products</h2>
 
       <div className="overflow-x-auto rounded-lg bg-white/10 backdrop-blur-md shadow-lg border border-white/20">
         <table className="table text-white w-full">
-          <thead >
+          <thead>
             <tr className="text-lg text-white bg-white/20">
               <th>#</th>
               <th>Product Name</th>
@@ -84,44 +74,47 @@ const MyProduct = () => {
               <th className="text-center">Actions</th>
             </tr>
           </thead>
-          <tbody className=''>
-            {products.map((product, index) => (
-              <tr key={product._id}>
-                <td>{index + 1}</td>
-                <td className='capitalize'>{product.productName}</td>
-                <td>{product.vote_count || 0}</td>
-                <td>
-                  <span
-                    className={`px-3   py-2 rounded-xl text-sm font-medium capitalize ${
-                      product.product_status === 'accepted'
-                        ? 'bg-green-600'
-                        : product.product_status === 'rejected'
-                        ? 'bg-red-500'
-                        : 'bg-amber-600'
-                    }`}
-                  >
-                    {product.product_status}
-                  </span>
-                </td>
-                <td className="flex gap-3 justify-center mt-2">
-                  <Link
-                    to={`/update-product/${product._id}`}
-                    className="px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white rounded-md"
-                  >
-                    Update
-                  </Link>
-                  <button
-                    onClick={() =>handleDelete(product._id)}
-                    className="px-4 py-2 bg-red-600 hover:bg-red-700 text-white rounded-md"
-                  >
-                    Delete
-                  </button>
-                </td>
-              </tr>
-            ))}
-            {products.length === 0 && (
+          <tbody>
+            {products.length > 0 ? (
+              products.map((product, index) => (
+                <tr key={product._id}>
+                  <td>{index + 1}</td>
+                  <td className="capitalize">{product.productName}</td>
+                  <td>{product.vote_count || 0}</td>
+                  <td>
+                    <span
+                      className={`px-3 py-2 rounded-xl text-sm font-medium capitalize ${
+                        product.product_status === 'accepted'
+                          ? 'bg-green-600'
+                          : product.product_status === 'rejected'
+                          ? 'bg-red-500'
+                          : 'bg-amber-600'
+                      }`}
+                    >
+                      {product.product_status}
+                    </span>
+                  </td>
+                  <td className="flex gap-3 justify-center mt-2">
+                    <Link
+                      to={`/update-product/${product._id}`}
+                      className="px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white rounded-md"
+                    >
+                      Update
+                    </Link>
+                    <button
+                      onClick={() => handleDelete(product._id)}
+                      className="px-4 py-2 bg-red-600 hover:bg-red-700 text-white rounded-md"
+                    >
+                      Delete
+                    </button>
+                  </td>
+                </tr>
+              ))
+            ) : (
               <tr>
-                <td colSpan="5" className="text-center py-4 text-white">No products added yet.</td>
+                <td colSpan="5" className="text-center py-4 text-white">
+                  No products added yet.
+                </td>
               </tr>
             )}
           </tbody>
