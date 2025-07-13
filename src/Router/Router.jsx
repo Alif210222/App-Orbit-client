@@ -20,6 +20,7 @@ import ReportedProduct from '../DashBoard/ReportedProduct/ReportedProduct';
 import ManageUser from '../DashBoard/AdminSection/ManageUser';
 import ProductDetails from '../Pages/ProductDetails/ProductDetails';
 import StatisticsPage from '../DashBoard/StatisticsPage/StatisticsPage';
+import ErrorPage from '../Components/ErrorPage/ErrorPage';
 
 
 
@@ -28,6 +29,7 @@ import StatisticsPage from '../DashBoard/StatisticsPage/StatisticsPage';
   {
     path: "/",
    Component:Root,
+   errorElement:<ErrorPage></ErrorPage>,
    children:[
     {
        index:true,
@@ -65,6 +67,7 @@ import StatisticsPage from '../DashBoard/StatisticsPage/StatisticsPage';
   {
     path:"/dashboard",
     Component:DashBoardLayout,
+    errorElement:<ErrorPage></ErrorPage>,
     children:[
       {
         path:"addProduct",
