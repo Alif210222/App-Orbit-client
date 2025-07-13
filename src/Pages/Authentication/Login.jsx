@@ -4,8 +4,9 @@ import { GoogleAuthProvider, signInWithPopup } from "firebase/auth";
 import { use, useState } from "react";
 import { auth } from "../../Firebase/firebase.init";
 import { AuthContext } from "../../Context/AuthContext";
-import { Link, useNavigate } from "react-router";
+import { Link, useLocation, useNavigate } from "react-router";
 import { toast } from "react-toastify";
+import useAxiosSecure from "../../hooks/useAxiosSecure";
 
 export default function Login() {
   const {register,handleSubmit,formState: { errors },} = useForm();
@@ -13,6 +14,8 @@ export default function Login() {
   const provider = new GoogleAuthProvider();
   const navigate = useNavigate();
   const [firebaseError, setFirebaseError] = useState("");
+  const location = useLocation()
+  const axiosSecure = useAxiosSecure()
 
 
   // Email/Password Login
@@ -25,7 +28,7 @@ export default function Login() {
         // console.log("User logged in:", result.user);
          toast("Login Successful!") 
 
-        navigate("/"); // Redirect to homepage
+         navigate(location?.state ||  "/" ); // Redirect to homepage
 
       })
       .catch((error) => {
@@ -34,15 +37,33 @@ export default function Login() {
       });
   };
 
+
+
   // Google Sign In
   const handleGoogleLogin = () => {
     setFirebaseError("");
 
     signInWithPopup(auth, provider)
-      .then((result) => {
-        console.log("Google sign-in:", result.user);
+      .then( async(result) => {
+        // console.log("Google sign-in:", result.user);
 
-        navigate("/"); // Redirect to homepage
+
+      // GOOGLE LOGIN BASED USER DATA SEND TO DATABASE 
+         const userInfo = {
+
+          userName:result.user.displayName,
+          email:result.user.email,
+          role:"user",
+          created_at:new Date().toISOString(),
+          last_log_in:new Date().toISOString(),
+        }
+
+
+        const userResult = await axiosSecure.post("/googleUsers",userInfo)
+        // console.log(userResult.data)
+
+
+         navigate(location?.state ||  "/" ); // Redirect to homepage
       })
       .catch((error) => {
         console.error("Google Login error:", error);
@@ -51,6 +72,8 @@ export default function Login() {
   };
 
   
+
+
   return (
     <div className="min-h-screen flex items-center justify-center bg-gradient-to-r from-[#0a0400] via-[#231101] to-[#020018]    px-4">
       <div className="w-full max-w-md bg-white/10 backdrop-blur-md rounded-lg shadow-lg p-8 text-white border border-white/20">

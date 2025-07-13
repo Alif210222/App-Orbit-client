@@ -2,9 +2,32 @@ import React from 'react';
 import { Link, NavLink, Outlet } from 'react-router';
 import { FaHome, FaBox, FaHistory, FaMapMarkerAlt, FaUserEdit, FaMotorcycle, FaTasks, FaCheckCircle, FaWallet } from 'react-icons/fa';
 import logo from "../assets/logo.png"
+import useUserRole from '../hooks/useUserRole';
+import { useLocation, useNavigate } from 'react-router';
+import { useEffect } from 'react';
 
 
 const DashBoardLayout = () => {
+
+    const {role,isLoading} = useUserRole()
+
+    // console.log(role)
+
+// user go to their defailt route 
+    const location = useLocation();
+const navigate = useNavigate();
+
+useEffect(() => {
+  if (!isLoading && location.pathname === "/dashboard") {
+    if (role === "user") {
+      navigate("/dashboard/myProfile", { replace: true });
+    } else if (role === "moderator") {
+      navigate("/dashboard/productReview", { replace: true });
+    } else if (role === "admin") {
+      navigate("/dashboard/statistics", { replace: true });
+    }
+  }
+}, [isLoading, role, location.pathname, navigate]);
 
 
 
@@ -64,60 +87,95 @@ const DashBoardLayout = () => {
        <ul className='p-1 bg-amber-50'></ul>
 
       <li className='text-white text-xl mt-6'>
-        <Link to="/">
+        <NavLink to="/" >
           <FaHome className="inline mr-2" />
           Home
-        </Link>
+        </NavLink>
       </li>
-        <li className='text-white text-lg font-medium'>
-        <NavLink to="/dashboard/myProfile">
+
+      {/* user section  */}
+
+
+     {
+        !isLoading && role === "user"  && <>
+        
+         <li className='text-white text-lg font-medium'>
+        <NavLink to="/dashboard/myProfile"  className={({isActive})=> isActive ? "text-orange-400 " :"" }>
           <FaUserEdit className="inline mr-2" />
           My Profile
         </NavLink>
       </li>
       <li className='text-white text-lg font-medium'>
-        <NavLink to="/dashboard/addProduct">
+        <NavLink to="/dashboard/addProduct" className={({isActive})=> isActive ? "text-orange-400 " :"" }>
           <FaBox className="inline mr-2" />
           Add Product
         </NavLink>
       </li>
       <li className='text-white text-lg font-medium'>
-        <NavLink to="/dashboard/myProduct">
+        <NavLink to="/dashboard/myProduct" className={({isActive})=> isActive ? "text-orange-400 " :"" }>
           <FaHistory className="inline mr-2" />
            My Product
         </NavLink>
       </li >
+        
+        </> 
+     }
+
+       
       
 
    {/* moderator section  */}
 
-       <li className='text-white text-lg font-medium'>
-        <NavLink to="/dashboard/productReview">
+   {
+     !isLoading && role === "moderator" && 
+     <>
+     <li className='text-white text-lg font-medium'>
+        <NavLink to="/dashboard/productReview" className={({isActive})=> isActive ? "text-orange-400 " :"" }>
           <FaHistory className="inline mr-2" />
          Product Review Queue
         </NavLink>
         </li >
         <li className='text-white text-lg font-medium'>
-        <NavLink to="/dashboard/reportedProduct">
+        <NavLink to="/dashboard/reportedProduct" className={({isActive})=> isActive ? "text-orange-400 " :"" }>
           <FaHistory className="inline mr-2" />
            Reported Product 
         </NavLink>
         </li >
+     
+     </>
+   }
+
+       
 
     {/* admin section  */}
+
+      {
+        !isLoading && role === "admin" && 
+        <>
+        
      <li className='text-white text-lg font-medium'>
-        <NavLink to="/dashboard/statistics">
+        <NavLink to="/dashboard/statistics"  className={({isActive})=> isActive ? "text-orange-400 " :"" }>
           <FaHistory className="inline mr-2" />
            Statistics Page
         </NavLink>
    </li >
 
    <li className='text-white text-lg font-medium'>
-        <NavLink to="/dashboard/manageUser">
+        <NavLink to="/dashboard/manageUser" className={({isActive})=> isActive ? "text-orange-400 " :"" }>
           <FaHistory className="inline mr-2" />
            Manage User
         </NavLink>
    </li >
+   <li className='text-white text-lg font-medium'>
+        <NavLink to="/dashboard/manageCoupon" className={({isActive})=> isActive ? "text-orange-400 " :"" }>
+          <FaHistory className="inline mr-2" />
+           Manage Coupon
+        </NavLink>
+   </li >
+        
+        </>
+      }
+
   
 
 

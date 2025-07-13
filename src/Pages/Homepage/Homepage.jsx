@@ -2,7 +2,8 @@ import React from 'react';
 import Banner from '../../Components/Navber/Banner/Banner';
 import FeaturedProduct from '../../Components/FeaturedPoduct/FeaturedProduct';
 import TrendingProducts from '../../Components/TrendingProducts/TrendingProducts';
-import Footer from '../../Components/Footer/Footer';
+
+import CouponSlider from '../../Components/CouponSlider/CouponSlider';
 
 const Homepage = () => {
     return (
@@ -16,6 +17,7 @@ const Homepage = () => {
            <TrendingProducts></TrendingProducts>
 
            
+           <CouponSlider></CouponSlider>
         </div>
     );
 };

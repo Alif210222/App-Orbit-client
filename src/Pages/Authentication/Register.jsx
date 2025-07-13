@@ -1,6 +1,6 @@
 import { use, useState } from "react";
 import { useForm } from "react-hook-form";
-import { Link, useNavigate } from "react-router";
+import { Link, useLocation, useNavigate } from "react-router";
 import { AuthContext } from "../../Context/AuthContext";
 import axios from 'axios';
 import useAxiosSecure from "../../hooks/useAxiosSecure";
@@ -16,6 +16,7 @@ const  Register =()=> {
    const [profilePic, setProfilePic] = useState('')
    const navigate = useNavigate()
    const axiosSecure = useAxiosSecure()
+   const location  = useLocation()
 
   //  console.log(profilePic)
 
@@ -68,7 +69,7 @@ const  Register =()=> {
           })
            toast("Registation Successful!") 
               // navigate
-               navigate("/")
+              navigate(location?.state ||  "/" )
 
          })
          .catch(error =>{

@@ -28,11 +28,11 @@ const DashboardPie = () => {
 
   return (
 
-    <div className=' '>
+    <div className='min-h-screen '>
 
   
-    <div className="max-w-4xl  mx-auto py-10 px-4 text-white">
-      <h2 className="text-3xl font-bold text-center mb-8">Dashboard Summary</h2>
+    <div className="max-w-4xl  mx-auto  px-4 text-white">
+      <h2 className="text-3xl font-bold text-center mt-20 mb-">Dashboard Summary</h2>
       <ResponsiveContainer width="100%" height={400} >
         <PieChart>
           <Pie
@@ -53,14 +53,23 @@ const DashboardPie = () => {
           <Legend />
         </PieChart>
 
-      <div className='hidden md:hidden lg:flex gap-6 text-center    mt-10 space-y-4 '>
-         <p className='text-black p-3 bg-green-400 font-bold  w-50 h-12 rounded-2xl'>Accepted Products : {data.accepted}</p>
-         <p className='text-black p-3 bg-amber-300 font-bold  w-50  h-12  rounded-2xl'>Pending Products : {data.pending}</p>
-         <p className='text-black p-3 bg-orange-400 font-bold  w-50   h-12 rounded-2xl'>Total Reviews : {data.reviews} </p>
-         <p className='text-black p-3 bg-[#8884d8] font-bold  w-50   h-12 rounded-2xl'>Total Users : {data.users}</p>
-       </div>
-
       </ResponsiveContainer>
+
+        {/* Summary Cards - now below chart */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 text-center mt-10">
+          <div className="bg-green-400 text-black font-bold p-4 rounded-2xl shadow-md">
+            Accepted Products: <span className="block text-2xl">{data.accepted}</span>
+          </div>
+          <div className="bg-amber-300 text-black font-bold p-4 rounded-2xl shadow-md">
+            Pending Products: <span className="block text-2xl">{data.pending}</span>
+          </div>
+          <div className="bg-orange-400 text-black font-bold p-4 rounded-2xl shadow-md">
+            Total Reviews: <span className="block text-2xl">{data.reviews}</span>
+          </div>
+          <div className="bg-[#8884d8] text-black font-bold p-4 rounded-2xl shadow-md">
+            Total Users: <span className="block text-2xl">{data.users}</span>
+          </div>
+        </div>
 
       
     </div>

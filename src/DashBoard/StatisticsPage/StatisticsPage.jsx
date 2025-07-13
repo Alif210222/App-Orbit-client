@@ -3,7 +3,7 @@ import DashboardPie from './DashBoardPie';
 
 const StatisticsPage = () => {
     return (
-        <div >
+        <div className='' >
 
             <DashboardPie></DashboardPie>
            

@@ -21,6 +21,8 @@ import ManageUser from '../DashBoard/AdminSection/ManageUser';
 import ProductDetails from '../Pages/ProductDetails/ProductDetails';
 import StatisticsPage from '../DashBoard/StatisticsPage/StatisticsPage';
 import ErrorPage from '../Components/ErrorPage/ErrorPage';
+import PrivetRoute from '../Routes/PrivetRoute';
+import ManageCupon from '../DashBoard/ManageCupon/ManageCupon';
 
 
 
@@ -41,7 +43,8 @@ import ErrorPage from '../Components/ErrorPage/ErrorPage';
     },
     {
         path:"productDetails/:id", 
-        Component:ProductDetails
+        element:<PrivetRoute><ProductDetails></ProductDetails></PrivetRoute>,
+        // Component:ProductDetails
     },
       {
        path:"/update-product/:id",
@@ -66,38 +69,46 @@ import ErrorPage from '../Components/ErrorPage/ErrorPage';
   },
   {
     path:"/dashboard",
-    Component:DashBoardLayout,
+    element:<PrivetRoute><DashBoardLayout></DashBoardLayout></PrivetRoute>,
+    // Component:DashBoardLayout,
     errorElement:<ErrorPage></ErrorPage>,
     children:[
       {
         path:"addProduct",
-        Component:AddProduct
+       element:<PrivetRoute><AddProduct></AddProduct></PrivetRoute>
       },
       {
         path:"myProduct",
-        Component:MyProduct
+        element:<PrivetRoute><MyProduct></MyProduct></PrivetRoute>
       },
       {
         path:"myProfile",
-        Component:MyProfile
+       element:<PrivetRoute><MyProfile></MyProfile></PrivetRoute>
       },
      
+      // moderator route
       {
         path:"productReview",
-        Component:ProductReview
+       element:<PrivetRoute><ProductReview></ProductReview></PrivetRoute>
       },
      
       {
         path:"reportedProduct",
-        Component:ReportedProduct
+        element:<PrivetRoute><ReportedProduct></ReportedProduct></PrivetRoute>
       },
+ 
+       // admin route
       {
         path:"manageUser",
-        Component:ManageUser
+      element:<PrivetRoute><ManageUser></ManageUser></PrivetRoute>
       },
       {
         path:"statistics",
-        Component:StatisticsPage
+        element:<PrivetRoute><StatisticsPage></StatisticsPage></PrivetRoute>
+      },
+      {
+        path:"manageCoupon",
+        element:<PrivetRoute><ManageCupon></ManageCupon></PrivetRoute>
       }
      
     ]

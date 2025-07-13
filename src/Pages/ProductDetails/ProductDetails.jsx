@@ -138,7 +138,7 @@ const ProductDetails = () => {
         <div className="space-y-3 md:flex gap-4 justify-between items-center ">
           <button
             onClick={()=> handleUpvote(product._id)}
-            className="flex items-center gap-2 bg-red-600 hover:bg-red-700 px-4 py-2 rounded-lg disabled:opacity-50"
+            className="flex items-center gap-2  bg-red-600 hover:bg-red-700 px-4 py-2 rounded-lg disabled:opacity-50"
             disabled={user?.email === product.ownerEmail || product.voted}
           >
             <FaHeart /> {product.vote_count || 0} Upvotes
@@ -146,7 +146,7 @@ const ProductDetails = () => {
 
           <button
             onClick={() => handleReport(product._id,"reported" )}
-            className="flex items-center gap-2 bg-yellow-500 hover:bg-yellow-600 px-4 py-2 rounded-lg"
+            className="flex items-center gap-2 bg-yellow-500 hover:bg-yellow-600 px-4 py-2 mb-2 rounded-lg"
             disabled={product.report_status === 'reported'}
           >
             <FaFlag /> Report Product
