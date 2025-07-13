@@ -72,18 +72,18 @@ const handleDelete = (i) => {
          console.log(res.data)
 
           if (res.data.insertedId) {
-        // console.log("data inserted")
-        // toast.success('✅ Product added successfully!', {
-        //       position: 'top-center',
-        //       autoClose: 3000,
-        //       hideProgressBar: false,
-        //       closeOnClick: true,
-        //       pauseOnHover: true,
-        //       draggable: true,
-        //       theme: 'colored',
-        //     });
-        // reset();
-        // navigate("/dashboard/myProduct");
+        console.log("data inserted")
+        toast.success('✅ Product added successfully!', {
+              position: 'top-center',
+              autoClose: 3000,
+              hideProgressBar: false,
+              closeOnClick: true,
+              pauseOnHover: true,
+              draggable: true,
+              theme: 'colored',
+            });
+        reset();
+        navigate("/dashboard/myProduct");
       }
 
       })
