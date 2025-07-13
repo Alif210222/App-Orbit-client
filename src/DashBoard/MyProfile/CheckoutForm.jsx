@@ -53,7 +53,7 @@ const CheckoutForm = ({ price, user, closeModal }) => {
     }
 
     if (paymentIntent.status === 'succeeded') {
-        console.log("payment hoice aiber bari ja ",paymentIntent)
+        // console.log("payment hoice aiber bari ja ",paymentIntent)
       // Update membership status in DB
       await axiosSecure.patch(`/user/membership-status/${user.email}`, {
         membership_status: 'verified',
