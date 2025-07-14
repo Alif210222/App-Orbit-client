@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link, NavLink, Outlet } from 'react-router';
-import { FaHome, FaBox, FaHistory, FaMapMarkerAlt, FaUserEdit, FaMotorcycle, FaTasks, FaCheckCircle, FaWallet } from 'react-icons/fa';
+import { FaHome, FaBox, FaHistory,FaStarHalfAlt , FaUserEdit,  FaCube, FaChartPie, FaUsers, FaPercentage } from 'react-icons/fa';
 import logo from "../assets/logo.png"
 import useUserRole from '../hooks/useUserRole';
 import { useLocation, useNavigate } from 'react-router';
@@ -32,11 +32,10 @@ useEffect(() => {
 
 
 
-
     return (
        <div className="drawer lg:drawer-open  bg-gradient-to-br from-[#5f2701] via-[#311701] to-[#100700] ">
   <input id="my-drawer-2" type="checkbox" className="drawer-toggle " />
-  <div className="drawer-content min-h-screen flex flex-col bg-gradient-to-br from-[#1a0b00] via-[#060300] to-[#100700] ">
+  <div className="drawer-content min-h-screen flex flex-col bg-gradient-to-br from-[#060127] via-[#0f0800] to-[#231001] ">
 
             {/* Navbar */}
     <div className="navbar  w-full lg:hidden">
@@ -113,7 +112,7 @@ useEffect(() => {
       </li>
       <li className='text-white text-lg font-medium'>
         <NavLink to="/dashboard/myProduct" className={({isActive})=> isActive ? "text-orange-400 " :"" }>
-          <FaHistory className="inline mr-2" />
+          < FaCube className="inline mr-2" />
            My Product
         </NavLink>
       </li >
@@ -131,13 +130,13 @@ useEffect(() => {
      <>
      <li className='text-white text-lg font-medium'>
         <NavLink to="/dashboard/productReview" className={({isActive})=> isActive ? "text-orange-400 " :"" }>
-          <FaHistory className="inline mr-2" />
+          <FaStarHalfAlt className="inline mr-2" />
          Product Review Queue
         </NavLink>
         </li >
         <li className='text-white text-lg font-medium'>
         <NavLink to="/dashboard/reportedProduct" className={({isActive})=> isActive ? "text-orange-400 " :"" }>
-          <FaHistory className="inline mr-2" />
+          <FaCube className="inline mr-2" />
            Reported Product 
         </NavLink>
         </li >
@@ -155,20 +154,20 @@ useEffect(() => {
         
      <li className='text-white text-lg font-medium'>
         <NavLink to="/dashboard/statistics"  className={({isActive})=> isActive ? "text-orange-400 " :"" }>
-          <FaHistory className="inline mr-2" />
+          <FaChartPie className="inline mr-2" />
            Statistics Page
         </NavLink>
    </li >
 
    <li className='text-white text-lg font-medium'>
         <NavLink to="/dashboard/manageUser" className={({isActive})=> isActive ? "text-orange-400 " :"" }>
-          <FaHistory className="inline mr-2" />
+          <FaUsers className="inline mr-2" />
            Manage User
         </NavLink>
    </li >
    <li className='text-white text-lg font-medium'>
         <NavLink to="/dashboard/manageCoupon" className={({isActive})=> isActive ? "text-orange-400 " :"" }>
-          <FaHistory className="inline mr-2" />
+          < FaPercentage className="inline mr-2" />
            Manage Coupon
         </NavLink>
    </li >

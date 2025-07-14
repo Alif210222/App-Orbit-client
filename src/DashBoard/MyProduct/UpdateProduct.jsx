@@ -8,6 +8,7 @@ import { useForm } from 'react-hook-form';
 import { toast } from 'react-toastify';
 import { WithContext as ReactTags } from 'react-tag-input';
 import Swal from 'sweetalert2';
+import Loading from '../../Components/Loading/Loading';
 
 const KeyCodes = {
   comma: 188,
@@ -88,10 +89,10 @@ const UpdateProduct = () => {
   };
 
 
-  if (!product) return <p className="text-white text-center mt-6">Loading...</p>;
+  if (!product) return <Loading></Loading>
 
   return (
-    <div className="max-w-3xl mx-auto mt-10 bg-white/10 backdrop-blur-md rounded-lg shadow-lg p-8 text-white border border-white/20">
+    <div className="max-w-3xl min-h-screen mb-10 mx-auto mt-10 bg-white/10 backdrop-blur-md rounded-lg shadow-lg p-8 text-white border border-white/20">
       <h2 className="text-3xl font-bold mb-6 text-center">Update Product</h2>
       <form onSubmit={handleSubmit(onSubmit)} className="space-y-5">
         {/* product name  */}

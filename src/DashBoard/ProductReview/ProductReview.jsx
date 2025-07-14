@@ -6,6 +6,7 @@ import { Link } from 'react-router';
 import { toast } from 'react-toastify';
 import { useQuery, useQueryClient } from '@tanstack/react-query';
 import Swal from 'sweetalert2';
+import Loading from '../../Components/Loading/Loading';
 
 const ProductReview = () => {
   const axiosSecure = useAxiosSecure();
@@ -67,7 +68,7 @@ const ProductReview = () => {
 
 
 
-  if (isLoading) return <p className="text-white text-center mt-6">Loading...</p>;
+  if (isLoading) return <Loading></Loading>
 
   return (
     <div className="max-w-7xl mt-10 px-4 text-white">

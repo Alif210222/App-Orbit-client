@@ -35,7 +35,7 @@ const Navbar = () => {
       </ul>
     </div>
     <a className="btn btn-ghost text-3xl text-white"><span>
-          <img src={logo} className='w-14 h-14' alt="" />
+          <img src={logo} className='w-10 h-10' alt="" />
          
          </span > AppOrbit</a>
   </div>

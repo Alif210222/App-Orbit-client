@@ -4,11 +4,14 @@ import FeaturedProduct from '../../Components/FeaturedPoduct/FeaturedProduct';
 import TrendingProducts from '../../Components/TrendingProducts/TrendingProducts';
 
 import CouponSlider from '../../Components/CouponSlider/CouponSlider';
+import HomeCard from '../../Components/HomeCard/HomeCard';
 
 const Homepage = () => {
     return (
         <div className='bg-gradient-to-br from-[#0a0400] via-[#231101] to-[#020018]'>
            <Banner></Banner>
+
+           <HomeCard></HomeCard>
 
 
            <FeaturedProduct></FeaturedProduct>

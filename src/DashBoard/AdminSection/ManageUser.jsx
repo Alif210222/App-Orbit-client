@@ -4,6 +4,7 @@ import useAxiosSecure from '../../hooks/useAxiosSecure';
 import { Link } from 'react-router';
 import { AuthContext } from '../../Context/AuthContext';
 import Swal from 'sweetalert2';
+import Loading from '../../Components/Loading/Loading';
 
 const ManageUser = () => {
     const axiosSecure = useAxiosSecure()
@@ -34,14 +35,14 @@ const ManageUser = () => {
     }
 
 
-   {isLoading && <p>loading user...........</p>}
+   {isLoading && <Loading></Loading>}
 
 
     return (
         <div className="max-w-7xl mt-10 px-4 text-white">
       <h2 className="text-3xl font-bold mb-6 text-center">All Users</h2>
       <div className="overflow-x-auto rounded-lg bg-white/10 backdrop-blur-md shadow-md border border-white/20">
-        <table className="table w-full text-white bg-white/20">
+        <table className="table  w-full text-white bg-white/20">
           <thead>
             <tr className="text-left text-white bg-white/20">
               <th>#</th>

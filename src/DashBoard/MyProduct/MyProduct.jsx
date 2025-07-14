@@ -4,6 +4,7 @@ import useAxiosSecure from '../../hooks/useAxiosSecure';
 import { AuthContext } from '../../Context/AuthContext';
 import { Link } from 'react-router'; // ✅ use 'react-router-dom'
 import Swal from 'sweetalert2';
+import Loading from '../../Components/Loading/Loading';
 
 const MyProduct = () => {
   const { user } = useContext(AuthContext);
@@ -52,7 +53,7 @@ const MyProduct = () => {
     });
   };
 
-  if (isLoading) return <p className="text-center text-white mt-10">Loading your products...</p>;
+  if (isLoading) return <Loading></Loading>
   if (isError) return <p className="text-center text-red-500">Error: {error.message}</p>;
 
   return (

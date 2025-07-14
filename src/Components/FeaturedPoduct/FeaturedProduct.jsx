@@ -65,7 +65,7 @@ const FeaturedProducts = () => {
         {featuredProducts.map((product) => (
           <div
             key={product._id}
-            className="bg-gradient-to-br from-[#1a0461] via-[#000000] to-[#431b01] rounded-xl shadow-lg overflow-hidden w-70 md:w-full mx-auto h-96 text-center"
+            className="bg-gradient-to-br from-[#1a0461] via-[#000000] to-[#431b01] rounded-xl shadow-lg overflow-hidden w-70 md:w-full mx-auto h-96 text-center  hover:scale-105 transition-transform duration-300"
           >
             <div className='flex justify-center p-3'>
             <img

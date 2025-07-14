@@ -3,6 +3,7 @@ import useAxiosSecure from '../../hooks/useAxiosSecure';
 import { useQuery, useQueryClient } from '@tanstack/react-query';
 import { Link } from 'react-router';
 import Swal from 'sweetalert2';
+import Loading from '../../Components/Loading/Loading';
 
 const ReportedContents = () => {
   const axiosSecure = useAxiosSecure();
@@ -37,7 +38,7 @@ const ReportedContents = () => {
     });
   };
 
-  if (isLoading) return <p className="text-white text-center mt-10">Loading...</p>;
+  if (isLoading) return <Loading></Loading>;
 
   return (
     <div className="max-w-7xl mx-auto px-4 py-10 text-white">
