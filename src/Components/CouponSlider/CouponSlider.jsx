@@ -14,7 +14,7 @@ const CouponSlider = () => {
       try {
         const res = await axiosSecure.get("/homepageCoupons");
         setCoupons(res.data);
-        console.log(res.data)
+        // console.log(res.data)
       } catch (error) {
         console.error("Failed to fetch coupons", error);
       }

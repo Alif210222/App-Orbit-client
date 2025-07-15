@@ -56,7 +56,7 @@ const handleDelete = (i) => {
     if (user?.email) {
       axiosSecure.get(`/userData/${user?.email}`).then(res => {
         setUserInfo(res.data);
-         console.log(res.data)
+        //  console.log(res.data)
         
       });
 

@@ -10,7 +10,7 @@ import useAxiosSecure from "../../hooks/useAxiosSecure";
 
 export default function Login() {
   const {register,handleSubmit,formState: { errors },} = useForm();
-  const {loginUser} = use(AuthContext)
+  const {loginUser,loading} = use(AuthContext)
   const provider = new GoogleAuthProvider();
   const navigate = useNavigate();
   const [firebaseError, setFirebaseError] = useState("");
@@ -27,7 +27,7 @@ export default function Login() {
       .then((result) => {
         // console.log("User logged in:", result.user);
          toast("Login Successful!") 
-
+         
          navigate(location?.state ||  "/" ); // Redirect to homepage
 
       })

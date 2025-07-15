@@ -68,6 +68,11 @@ const ManageCupon = () => {
     });
   };
 
+
+
+  
+
+
   return (
     <div className="max-w-7xl mx-auto px-4 py-10 text-white">
       <h2 className="text-3xl font-bold mb-6 text-center underline">Manage Coupons</h2>
@@ -107,6 +112,38 @@ const ManageCupon = () => {
                 coupons.length === 0 && <p className='text-center p-3 '>No Coupon Available  </p>
             }
       </div>
+       {/* add cupon  */}
+      
+        {/* Add/Edit Coupon Form */}
+       <h3 className={`text-3xl font-bold mb-4 rounded-2xl  text-center ${editingCoupon? "bg-[#5a73f1]" : "bg-[#48b846]" }   p-2 mt-30`} >{editingCoupon ? 'Edit' : 'Add'} Coupon</h3>
+      <div className="bg-white/10 p-6 rounded-lg shadow-lg">
+       
+        <form onSubmit={handleSubmit(onSubmit)} className="grid md:grid-cols-2 gap-6">
+          <div>
+            <label className="block font-medium mb-1">Coupon Code</label>
+            <input {...register('code', { required: true })} placeholder='Add coupon code ' className="w-full px-4 py-2 rounded text-white  border-1 border-white" />
+          </div>
+          <div>
+            <label className="block font-medium mb-1">Expiry Date</label>
+            <input type="date" {...register('expiryDate', { required: true })} className="w-full px-4 py-2 rounded text-white border-1 border-white" />
+          </div>
+          <div className="md:col-span-2">
+            <label className="block font-medium mb-1">Description</label>
+            <textarea {...register('description')} placeholder='Add coupon description' className="w-full px-4 py-2 rounded text-white border-1 border-white" rows="3"></textarea>
+          </div>
+          <div>
+            <label className="block font-medium mb-2">Discount (%)</label>
+            <input type="number" {...register('discount', { required: true })} placeholder='Add your discount amount' className="w-full px-4 py-2 rounded text-white border-1 border-white" />
+          </div>
+          <div className="md:col-span-2 text-center mt-4">
+            <button type="submit" className="bg-blue-600 hover:bg-blue-700 px-6 py-2 rounded text-white font-semibold">
+              {editingCoupon ? 'Update Coupon' : 'Add Coupon'}
+            </button>
+          </div>
+        </form>
+      </div>
+
+
 
       {/* Slider cards */}
       <h2 className="text-3xl font-bold mb-6 text-center underline mt-24">All Coupons</h2>
@@ -145,34 +182,7 @@ const ManageCupon = () => {
 
       
 
-      {/* Add/Edit Coupon Form */}
-       <h3 className={`text-3xl font-bold mb-4 rounded-2xl  text-center ${editingCoupon? "bg-[#5a73f1]" : "bg-[#48b846]" }   p-2 mt-30`} >{editingCoupon ? 'Edit' : 'Add'} Coupon</h3>
-      <div className="bg-white/10 p-6 rounded-lg shadow-lg">
-       
-        <form onSubmit={handleSubmit(onSubmit)} className="grid md:grid-cols-2 gap-6">
-          <div>
-            <label className="block font-medium mb-1">Coupon Code</label>
-            <input {...register('code', { required: true })} placeholder='Add coupon code ' className="w-full px-4 py-2 rounded text-white  border-1 border-white" />
-          </div>
-          <div>
-            <label className="block font-medium mb-1">Expiry Date</label>
-            <input type="date" {...register('expiryDate', { required: true })} className="w-full px-4 py-2 rounded text-white border-1 border-white" />
-          </div>
-          <div className="md:col-span-2">
-            <label className="block font-medium mb-1">Description</label>
-            <textarea {...register('description')} placeholder='Add coupon description' className="w-full px-4 py-2 rounded text-white border-1 border-white" rows="3"></textarea>
-          </div>
-          <div>
-            <label className="block font-medium mb-2">Discount (%)</label>
-            <input type="number" {...register('discount', { required: true })} placeholder='Add your discount amount' className="w-full px-4 py-2 rounded text-white border-1 border-white" />
-          </div>
-          <div className="md:col-span-2 text-center mt-4">
-            <button type="submit" className="bg-blue-600 hover:bg-blue-700 px-6 py-2 rounded text-white font-semibold">
-              {editingCoupon ? 'Update Coupon' : 'Add Coupon'}
-            </button>
-          </div>
-        </form>
-      </div>
+    
     </div>
   );
 };

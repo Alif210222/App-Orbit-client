@@ -1,32 +1,51 @@
 import { useQuery } from '@tanstack/react-query';
-import React, { use } from 'react';
+import React, { use, useEffect, useState } from 'react';
 import useAxiosSecure from '../../hooks/useAxiosSecure';
 import { Link } from 'react-router';
 import { AuthContext } from '../../Context/AuthContext';
 import Swal from 'sweetalert2';
 import Loading from '../../Components/Loading/Loading';
 import { Helmet } from 'react-helmet';
+import { getToken } from '../../Context/AuthProvider';
 
 const ManageUser = () => {
     const axiosSecure = useAxiosSecure()
     const {user,loading} = use(AuthContext)
 
+    // const token = getToken()
+
+    // const [users,setUsers] = useState([])
+
+    // console.log(users)
+
+
+    //  useEffect(() =>{
+    //        fetch("http://localhost:4000/users" )
+    //       .then(res=> res.json())
+    //       .then(data =>setUsers(data)  )
+            
+    //  },[axiosSecure])
+     
+    
+
     const {data: users = [],isLoading,refetch} = useQuery({
-        queryKey:["all-user"],
+        queryKey:[ user?.email , "all-user" ],
+        enabled: !!user?.email && !loading && !!user?.accessToken ,
         queryFn:  async () =>{
             const res = await axiosSecure.get("/users")
             return res.data;
-        }
+        },
+        
     })
 
-// console.log(user)
+
 
     const handleStatusUpdate =async (id,status)=>{
 
        const response =  await axiosSecure.patch(`/users/${id}/role`,{
         role: status, 
        })
-       refetch()
+    //    refetch()
        if (response.data.modifiedCount > 0) {
                Swal.fire('✅ Success', 'User status updated!', 'success');
                
@@ -37,7 +56,8 @@ const ManageUser = () => {
     }
 
 
-   {loading && <Loading></Loading>}
+//    {isLoading && <Loading></Loading>}
+
 
 
     return (
