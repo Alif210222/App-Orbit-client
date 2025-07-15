@@ -18,6 +18,7 @@ const CheckoutForm = ({ price, user, closeModal }) => {
 
 
 
+  
   const handleSubmit = async e => {
     e.preventDefault();
 

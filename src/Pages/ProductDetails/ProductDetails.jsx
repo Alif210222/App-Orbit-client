@@ -13,7 +13,7 @@ import ReviewSlider from './ReviewSlider';
 
 const ProductDetails = () => {
   const { id } = useParams();
-  const { user } = useContext(AuthContext);
+  const { user,loading } = useContext(AuthContext);
   const [product, setProduct] = useState(null);
 //    const [reviews, setReviews] = useState([]);
   const navigate = useNavigate();
@@ -32,15 +32,20 @@ const ProductDetails = () => {
 
 
 
+
+
   // product details get api 
   useEffect(() => {
+     
     axiosSecure.get(`/productDetails/${id}`)
       .then((res) => setProduct(res.data))
+       
       .catch((err) => console.error(err));
-  }, [id, axiosSecure]);
+   
+  }, [id, axiosSecure,loading]);
 
 
- 
+
 
  
   const handleUpvote = async (id) => {
@@ -77,6 +82,7 @@ const ProductDetails = () => {
         
       });
 
+
       if (res.data.modifiedCount > 0) {
         Swal.fire({
           icon: 'success',
@@ -94,8 +100,12 @@ const ProductDetails = () => {
   };
 
 
-  if (!product) return <p className="text-white text-center mt-20">Loading...</p>;
+  if (loading || !product) {
+  return <p className="text-white text-center mt-20">Loading...</p>;
+}
 
+
+  
   return (
     <div className='min-h-screen max-w-6xl mx-auto px-6 py-10'>
 

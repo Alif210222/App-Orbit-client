@@ -25,7 +25,7 @@ const ProductReview = () => {
   });
 
 
-  console.log(products)
+  // console.log(products)
 
 
   const handleStatusUpdate = async (id, status) => {

@@ -46,6 +46,7 @@ export default function Login() {
     signInWithPopup(auth, provider)
       .then( async(result) => {
         // console.log("Google sign-in:", result.user);
+        toast("Login with google Successful!") 
 
 
       // GOOGLE LOGIN BASED USER DATA SEND TO DATABASE 

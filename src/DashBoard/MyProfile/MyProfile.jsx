@@ -15,14 +15,18 @@ const MyProfile = () => {
   const queryClient = useQueryClient();
   const [isOpen, setIsOpen] = useState(false);
 
-  const { data: profile = {}, isLoading } = useQuery({
+  const { data: profile = {}, isLoading,refetch } = useQuery({
     queryKey: ['profile', user?.email],
     queryFn: async () => {
       const res = await axiosSecure.get(`/membershipUser/${user?.email}`);
+      console.log(res.data)
       return res.data;
+
+      
     },
     enabled: !!user?.email,
   });
+
 
   const isSubscribed = profile?.membership_status === 'verified';
   const subscriptionAmount = 50;
@@ -30,6 +34,9 @@ const MyProfile = () => {
   const handleSubscribe = () => {
     setIsOpen(true); // open modal
   };
+
+
+
 
   return (
     <div>
@@ -77,6 +84,7 @@ const MyProfile = () => {
                 closeModal={() => {
                   setIsOpen(false);
                   queryClient.invalidateQueries(['profile']);
+                  refetch()
                 }}
               />
             </Elements>
