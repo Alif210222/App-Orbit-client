@@ -49,7 +49,7 @@ const  Register =()=> {
         // console.log(userInfo)
 
         const userResult = await axiosSecure.post("/users",userInfo)
-        console.log(userResult.data)
+        // console.log(userResult.data)
 
 
 
@@ -88,7 +88,7 @@ const handleImageUpload = async(e) =>{
         formData.append("image", image)
 
          const res = await axios.post(`https://api.imgbb.com/1/upload?key=${import.meta.env.VITE_image_upload_key}`, formData) 
-        console.log(res.data.data.url)
+        // console.log(res.data.data.url)
         setProfilePic(res.data.data.url)
 
 }

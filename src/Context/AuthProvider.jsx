@@ -21,7 +21,7 @@ const loginUser =(email,password)=>{
 
 const logOut = () =>{
     setLoading(true)
-    return signOut(auth)
+    return signOut(auth).then(()=>window.location.reload())
 }
 
 

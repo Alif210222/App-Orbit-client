@@ -5,6 +5,9 @@ import { Link, useNavigate } from 'react-router';
 import { AuthContext } from '../../Context/AuthContext';
 import { FaHeart } from 'react-icons/fa';
 import useAxiosSecure from '../../hooks/useAxiosSecure';
+import { Helmet } from 'react-helmet';
+import { motion } from "framer-motion";
+
 
 const Product = () => {
   const [products, setProducts] = useState([]);
@@ -61,6 +64,11 @@ const Product = () => {
 
   return (
     <div className="max-w-7xl mx-auto px-4 py-10 min-h-screen">
+            <Helmet>
+                   <title>Products | App Orbit</title>
+              </Helmet>
+
+
       <h2 className="text-3xl font-bold text-center text-white mb-8">
         All Products
       </h2>
@@ -75,8 +83,9 @@ const Product = () => {
 
       <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
         {products.map((product) => (
-          <div
+          <motion.div
             key={product._id}
+             
             className="bg-white/10 backdrop-blur-md border border-white/20 rounded-xl shadow-lg overflow-hidden text-white"
           >
             <img
@@ -120,7 +129,7 @@ const Product = () => {
                 />
               </div>
             </div>
-          </div>
+          </motion.div>
         ))}
       </div>
 

@@ -5,6 +5,7 @@ import logo from "../assets/logo.png"
 import useUserRole from '../hooks/useUserRole';
 import { useLocation, useNavigate } from 'react-router';
 import { useEffect } from 'react';
+import { Helmet } from 'react-helmet';
 
 
 const DashBoardLayout = () => {
@@ -34,6 +35,10 @@ useEffect(() => {
 
     return (
        <div className="drawer lg:drawer-open  bg-gradient-to-br from-[#5f2701] via-[#311701] to-[#100700] ">
+                          <Helmet>
+                                <title> Dashboard| App Orbit</title>
+                           </Helmet>
+
   <input id="my-drawer-2" type="checkbox" className="drawer-toggle " />
   <div className="drawer-content min-h-screen flex flex-col bg-gradient-to-br from-[#060127] via-[#0f0800] to-[#231001] ">
 

@@ -5,10 +5,11 @@ import { Link } from 'react-router';
 import { AuthContext } from '../../Context/AuthContext';
 import Swal from 'sweetalert2';
 import Loading from '../../Components/Loading/Loading';
+import { Helmet } from 'react-helmet';
 
 const ManageUser = () => {
     const axiosSecure = useAxiosSecure()
-    const {user} = use(AuthContext)
+    const {user,loading} = use(AuthContext)
 
     const {data: users = [],isLoading,refetch} = useQuery({
         queryKey:["all-user"],
@@ -18,6 +19,7 @@ const ManageUser = () => {
         }
     })
 
+// console.log(user)
 
     const handleStatusUpdate =async (id,status)=>{
 
@@ -35,11 +37,15 @@ const ManageUser = () => {
     }
 
 
-   {isLoading && <Loading></Loading>}
+   {loading && <Loading></Loading>}
 
 
     return (
         <div className="max-w-7xl mt-10 px-4 text-white">
+                                            <Helmet>
+                                                 <title> Dashboard| Moderator</title>
+                                            </Helmet>
+
       <h2 className="text-3xl font-bold mb-6 text-center">All Users</h2>
       <div className="overflow-x-auto rounded-lg bg-white/10 backdrop-blur-md shadow-md border border-white/20">
         <table className="table  w-full text-white bg-white/20">

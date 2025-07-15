@@ -7,6 +7,7 @@ import { Link, useNavigate } from 'react-router';
 import useAxiosSecure from '../../hooks/useAxiosSecure';
 import axios from 'axios';
 import { toast } from 'react-toastify';
+import { Helmet } from 'react-helmet';
 
 // ... [Keep other code unchanged]
 const KeyCodes = {
@@ -123,7 +124,10 @@ const handleDelete = (i) => {
 
   return (
    <div className="max-w-3xl mx-auto   mt-10  bg-white/10 backdrop-blur-md rounded-lg shadow-lg p-8 text-white border border-white/20      ">
-     
+               <Helmet>
+                                <title> Dashboard| User</title>
+                           </Helmet>
+
       <h2 className="text-3xl font-bold mb-6 text-center">Add Your Product</h2>
       <form onSubmit={handleSubmit(onSubmit)} className="space-y-5">
         {/* Product Name */}

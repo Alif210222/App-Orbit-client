@@ -30,7 +30,7 @@ const Banner = () => {
 </motion.div>
 
            <motion.div
-  className="text-6xl text-[#537d7e] absolute top-8 right-8"
+  className="text-6xl text-[#537d7e] absolute top-10 right-10"
   animate={{ rotate: 360 }}
   transition={{ repeat: Infinity, duration: 6, ease: "linear" }}
 >

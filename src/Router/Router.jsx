@@ -48,7 +48,8 @@ import ManageCupon from '../DashBoard/ManageCupon/ManageCupon';
     },
       {
        path:"/update-product/:id",
-       Component:UpdateProduct,
+       element:<PrivetRoute><UpdateProduct></UpdateProduct></PrivetRoute>,
+      //  Component:UpdateProduct,
        
       },
      

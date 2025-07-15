@@ -2,6 +2,7 @@ import React, { useEffect } from 'react';
 import { FaLightbulb, FaRocket, FaUsers, FaHeart } from 'react-icons/fa';
 import AOS from 'aos';
 import 'aos/dist/aos.css';
+import { Helmet } from 'react-helmet';
 
 const About = () => {
   useEffect(() => {
@@ -10,6 +11,11 @@ const About = () => {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-blue-900 to-black text-white px-6 py-20">
+
+            <Helmet>
+                   <title>About| App Orbit</title>
+              </Helmet>
+
       <div className="max-w-6xl mx-auto text-center" data-aos="fade-down">
         <h1 className="text-5xl font-bold mb-6 bg-clip-text text-transparent bg-gradient-to-r from-cyan-400 to-purple-500">
           About Our Platform

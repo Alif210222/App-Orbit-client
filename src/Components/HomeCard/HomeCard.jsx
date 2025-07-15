@@ -58,13 +58,13 @@ const StatCard = ({ title, count, img }) => {
       initial={{ opacity: 0, y: 80 }}
       animate={inView ? { opacity: 1, y: 0 } : {}}
       transition={{ duration: 0.6, delay: 0.1 }}
-      className="glass-card p-6 h-[330px] rounded-2xl shadow-lg text-center text-white backdrop-blur-md bg-black/25 border border-white/20"
+      className="glass-card p-6 h-[330px] rounded-2xl shadow-lg text-center text-white backdrop-blur-md bg-black/25 border border-amber-700"
     >
-      <h3 className="text-xl font-semibold mb-6 ">{title}</h3>
-      <div className="text-4xl font-bold text-amber-300 mb-14">
+      <h3 className="text-xl font-semibold mb-14 ">{title}</h3>
+      <div className="text-4xl font-bold text-amber-300  mb-18">
         {inView && <CountUp end={count} duration={10} />}
       </div>
-      <img src={img} alt={title} className="w-36 h-16 mx-auto mt-2" />
+      <img src={img} alt={title} className="w-36 h-16 mx-auto mt-6" />
     </motion.div>
   );
 };

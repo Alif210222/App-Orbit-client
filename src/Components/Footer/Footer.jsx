@@ -5,7 +5,7 @@ import logo from "../../assets/logo.png"
 
 const Footer = () => {
     return (
-        <footer className="footer footer-horizontal footer-center bg-[#3b2003] text-base-content rounded p-10">
+        <footer className="footer footer-horizontal footer-center bg-[#2e1b08] text-base-content rounded p-10">
          <div>
             <Link to="/"> 
             <a className="btn btn-ghost text-3xl text-white"><span>
@@ -58,6 +58,8 @@ const Footer = () => {
       </a>
     </div>
   </nav>
+
+  <p className='btn'>support@app-orbit.com</p>
   <aside>
     <p className='text-white font-bold'>Copyright © {new Date().getFullYear()} - All right reserved by ACME Industries Ltd</p>
   </aside>

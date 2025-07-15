@@ -12,7 +12,7 @@ const TrendingProducts = () => {
   const axiosSecure = useAxiosSecure();
 
   useEffect(() => {
-    fetch('http://localhost:4000/trending-products')
+    fetch('https://app-orbit-server.vercel.app/trending-products')
       .then(res => res.json())
       .then(data => {
         const sorted = data
@@ -61,7 +61,7 @@ const TrendingProducts = () => {
            initial={{ opacity: 0, y: 50 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.4, delay: index * 0.1 }}
-          className="bg-gradient-to-br from-[#833004] via-[#272935] to-[#0c1950] border border-white/20 rounded-xl shadow-lg overflow-hidden   text-white hover:scale-105 transition-transform duration-300   ">
+          className="bg-gradient-to-br from-[#5c2203] via-[#1b1d26] to-[#04081c] border border-white/20 rounded-xl shadow-lg overflow-hidden   text-white hover:scale-105 transition-transform duration-300   ">
           
            <div className='p-6'>
             
