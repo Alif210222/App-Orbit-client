@@ -162,7 +162,7 @@ const handleImageUpload = async(e) =>{
           {/* Submit Button */}
           <button
             type="submit"
-            className="w-full py-2 mt-6 cursor-pointer bg-white text-black font-bold rounded-md hover:bg-gray-200 transition"
+            className="w-full py-2 mt-6 cursor-pointer bg-white text-black font-bold rounded-md hover:bg-gray-300 transition"
           >
             Register
           </button>

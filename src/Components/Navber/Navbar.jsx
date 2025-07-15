@@ -50,8 +50,8 @@ const Navbar = () => {
 
 {
   !user && <div className=' flex gap-2 md:gap-3'>
-      <button className=" px-3 md:px-6 py-1 md:py-3 md:text-lg font-medium shadow-2xl   rounded-xl  backdrop-blur-md bg-white/10 border border-white/20 text-white"> <NavLink  to="/login"  >Login</NavLink>   </button>
-      <button className=" px-3 md:px-4 py-1 md:py-3 md:text-lg font-medium shadow-2xl   rounded-xl  backdrop-blur-md bg-white/10 border border-white/20 text-white" > <NavLink to="/register">Registration</NavLink></button>
+      <button className=" px-3 md:px-6 py-1 md:py-3 md:text-lg font-medium shadow-2xl   rounded-xl  backdrop-blur-md bg-white/10 border border-white/20 text-white hover:bg-white/20"> <NavLink  to="/login"  >Login</NavLink>   </button>
+      <button className=" px-3 md:px-4 py-1 md:py-3 md:text-lg font-medium shadow-2xl   rounded-xl  backdrop-blur-md bg-white/10 border border-white/20 text-white hover:bg-white/20" > <NavLink to="/register">Registration</NavLink></button>
   
   </div>
 }
