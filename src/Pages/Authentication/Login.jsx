@@ -48,7 +48,6 @@ export default function Login() {
         // console.log("Google sign-in:", result.user);
         toast("Login with google Successful!") 
 
-
       // GOOGLE LOGIN BASED USER DATA SEND TO DATABASE 
          const userInfo = {
 

@@ -6,7 +6,7 @@ import { AuthContext } from '../../Context/AuthContext';
 import Swal from 'sweetalert2';
 import Loading from '../../Components/Loading/Loading';
 import { Helmet } from 'react-helmet';
-import { getToken } from '../../Context/AuthProvider';
+// import { getToken } from '../../Context/AuthProvider';
 
 const ManageUser = () => {
     const axiosSecure = useAxiosSecure()
@@ -20,7 +20,7 @@ const ManageUser = () => {
 
 
     //  useEffect(() =>{
-    //        fetch("http://localhost:4000/users" )
+    //        fetch("https://app-orbit-server.vercel.app/users" )
     //       .then(res=> res.json())
     //       .then(data =>setUsers(data)  )
             
@@ -28,13 +28,14 @@ const ManageUser = () => {
      
     
 
-    const {data: users = [],isLoading,refetch} = useQuery({
+    const {data: users = [],refetch} = useQuery({
         queryKey:[ user?.email , "all-user" ],
-        enabled: !!user?.email && !loading && !!user?.accessToken ,
+       
         queryFn:  async () =>{
             const res = await axiosSecure.get("/users")
             return res.data;
         },
+         enabled:  !loading ,
         
     })
 

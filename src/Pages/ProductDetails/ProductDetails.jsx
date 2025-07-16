@@ -34,14 +34,19 @@ const ProductDetails = () => {
 
 
 
+
+
+
   // product details get api 
   useEffect(() => {
-     
+     if(!loading){
+
     axiosSecure.get(`/productDetails/${id}`)
       .then((res) => setProduct(res.data))
        
       .catch((err) => console.error(err));
-   
+   }
+
   }, [id, axiosSecure,loading]);
 
 
@@ -101,7 +106,7 @@ const ProductDetails = () => {
 
 
   if (loading || !product) {
-  return <p className="text-white text-center mt-20">Loading...</p>;
+  return <p className="text-white text-center mt-20 min-h-screen">Loading....</p>;
 }
 
 
@@ -110,7 +115,7 @@ const ProductDetails = () => {
     <div className='min-h-screen max-w-6xl mx-auto px-6 py-10'>
 
   
-    <div className="max-w-5xl mx-auto px-6 py-10 mb-20 text-white  ">
+    <div className=" max-w-5xl mx-auto px-6 py-10 mb-20 text-white  ">
 
          <h2 className="text-3xl font-bold text-white mb-14 text-center">Product Details</h2>
       <div className= " md:flex gap-6  bg-blue-950 p-6 rounded-lg shadow-lg border border-white/20 ">
@@ -122,7 +127,7 @@ const ProductDetails = () => {
         <h2 className="text-3xl font-bold mb-2 capitalize">{product.productName}</h2>
         <p className="text-lg mb-4 text-gray-300">{product.description}</p>
 
-        <div className="mb-4 flex flex-wrap gap-2">
+        <div className="mb-4 flex flex-wrap gap-2 ">
           {product.tags.map((tag, index) => (
             <span key={index} className="bg-orange-500 px-2 py-1 text-xs rounded-full">#{tag}</span>
           ))}

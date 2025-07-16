@@ -6,9 +6,9 @@ import { auth } from '../Firebase/firebase.init';
 
 
 
-let token = null;
+// let token = null;
 
-export const getToken = () => token;
+// export const getToken = () => token;
 
 
 
@@ -16,6 +16,7 @@ export const getToken = () => token;
 const AuthProvider = ({children}) => {
     const [user,setUser] = useState(null)
       const [loading,setLoading]= useState(true)
+      const [token, setToken] = useState(null);
 
 
 
@@ -31,7 +32,7 @@ const loginUser =(email,password)=>{
 
 const logOut = () =>{
     setLoading(true)
-    return signOut(auth).then(()=>window.location.reload())
+    return signOut(auth)
 }
 
 
@@ -43,15 +44,18 @@ const updateUserProfile = profileInfo =>{
 
 // state observer 
 useEffect(()=>{
-    const unSubscriber = onAuthStateChanged(auth,currentUser =>{
+    const unSubscriber = onAuthStateChanged(auth, async(currentUser) =>{
         setUser(currentUser);
-        setLoading(false)
-        // if(currentUser){
-        //     currentUser.getIdToken().then((idToken) => {
-        //         token = idToken;
-        //     })
-        // }
-        // else {token = null}
+       
+         if (currentUser) {
+        const idToken = await currentUser.getIdToken();
+        setToken(idToken);
+      } else {
+        setToken(null);
+      }
+
+         setLoading(false)
+
     })
     return()=>{
         unSubscriber()
@@ -62,6 +66,7 @@ useEffect(()=>{
 
     const userInfo = {
          user,
+         token,
          loading,
          createUser,
          loginUser,

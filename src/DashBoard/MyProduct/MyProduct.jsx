@@ -7,7 +7,7 @@ import Swal from 'sweetalert2';
 import Loading from '../../Components/Loading/Loading';
 
 const MyProduct = () => {
-  const { user } = useContext(AuthContext);
+  const { user,loading } = useContext(AuthContext);
   const axiosSecure = useAxiosSecure();
 
   const {
@@ -22,7 +22,7 @@ const MyProduct = () => {
       const res = await axiosSecure.get(`/products?email=${user?.email}`);
       return res.data;
     },
-    enabled: !!user?.email,
+    enabled: !!user?.email && !loading ,
   });
 
   const products = Array.isArray(data) ? data : [];
