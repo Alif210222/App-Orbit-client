@@ -17,6 +17,8 @@ Create a trusted community that supports collaboration and creativity.
 
 Provide visibility to emerging talent and groundbreaking solutions.
    
+### Main Technologies :
+    ##### Reactjs , Nodejs , Expressjs , MongoDB , React Router , Firebase  Authentication  
 
 
 ### key features:
