@@ -18,7 +18,7 @@ const reviews = [
   },
   {
     id: 3,
-    name: "Michael Lee",
+    name: "Michael Lei",
     photo: "https://i.ibb.co/V5G610D/user-5.jpg",
     text: "Very easy to use, I recommend it to everyone.",
     rating: 5,
