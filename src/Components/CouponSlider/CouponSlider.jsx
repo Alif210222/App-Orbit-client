@@ -84,13 +84,13 @@ const getVisibleCoupons = () => {
       <div className="flex justify-center my-16 gap-4">
         <button
           onClick={prev}
-          className="p-3 rounded-full shadow-lg text-white bg-blue-600 hover:bg-blue-700 transition"
+          className="p-3 rounded-full shadow-lg text-white bg-amber-600/30 hover:bg-amber-700/30 cursor-pointer transition"
         >
           <FaArrowLeft />
         </button>
         <button
           onClick={next}
-          className="p-3 rounded-full shadow-lg text-white bg-blue-600 hover:bg-blue-700 transition"
+          className="p-3 rounded-full shadow-lg text-white bg-amber-600/30 hover:bg-amber-700/30 cursor-pointer transition"
         >
           <FaArrowRight />
         </button>

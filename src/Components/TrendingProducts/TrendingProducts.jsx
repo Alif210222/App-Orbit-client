@@ -78,7 +78,7 @@ const TrendingProducts = () => {
               </Link>
            </div>
 
-           <div className='w-52'>
+           <div className='w-52 text-gray-300'>
             {product.description}
            </div>
         
@@ -126,10 +126,10 @@ const TrendingProducts = () => {
         ))}
       </div>
 
-      <div className="flex justify-center mt-10">
+      <div className="flex justify-center mt-16">
         <Link
           to="/product"
-          className="bg-blue-600 hover:bg-blue-700 text-white font-semibold px-6 py-2 rounded-lg shadow-md"
+          className="bg-amber-600/30 hover:bg-amber-700/30 cursor-pointer text-gray-300 font-semibold px-6 py-3 rounded-lg shadow-md"
         >
           Show All Products
         </Link>
