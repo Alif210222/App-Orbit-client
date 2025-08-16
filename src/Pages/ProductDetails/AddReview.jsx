@@ -102,7 +102,7 @@ const AddReview = ({refetch}) => {
         {/* Submit Button */}
         <button
           type="submit"
-          className="bg-yellow-500 hover:bg-yellow-600 px-6 py-2 rounded-lg font-semibold"
+          className="bg-yellow-700/50 hover:bg-yellow-700/80 cursor-pointer px-6 py-2 rounded-lg font-semibold mt-4 justify-center "
         >
           Submit Review
         </button>

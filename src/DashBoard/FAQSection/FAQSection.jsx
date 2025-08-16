@@ -47,8 +47,8 @@ const FAQSection = () => {
         {faqs.map((faq, index) => (
           <motion.div
             key={index}
-            initial={{ opacity: 0, x: index % 2 === 0 ? -80 : 80 }}
-            whileInView={{ opacity: 1, x: 0 }}
+            initial={{ opacity: 0, y:80 }}
+            whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5 }}
             viewport={{ once: true }}
             className="bg-white/10 backdrop-blur-md p-5 rounded-xl border border-[#3f2b1d]"

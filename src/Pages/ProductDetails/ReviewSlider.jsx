@@ -22,7 +22,7 @@ const ReviewSlider = ({ reviews }) => {
   };
 
   if (!reviews.length) {
-    return <p className="text-white text-center mt-6">No reviews yet.</p>;
+    return <p className="text-white text-center mt-6 border border-[#794222] p-4 py-6 rounded-lg">No reviews yet.</p>;
   }
 
   const review = reviews[currentIndex];

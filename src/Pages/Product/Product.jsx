@@ -7,6 +7,7 @@ import { FaHeart } from 'react-icons/fa';
 import useAxiosSecure from '../../hooks/useAxiosSecure';
 import { Helmet } from 'react-helmet';
 import { motion } from "framer-motion";
+import Loading from '../../Components/Loading/Loading';
 
 
 const Product = () => {
@@ -62,6 +63,10 @@ const Product = () => {
     }
   };
 
+   if ( !products) {
+  return <Loading></Loading>;
+}
+
   return (
     <div className="max-w-7xl mx-auto px-4 py-10 min-h-screen">
             <Helmet>
@@ -78,7 +83,7 @@ const Product = () => {
         placeholder="Search by tag..."
         value={searchTerm}
         onChange={handleSearch}
-        className="w-full text-white md:w-1/2 mx-auto block mb-6 px-4 py-2 rounded-lg border border-gray-300 focus:outline-none focus:ring focus:border-blue-500"
+        className="w-full text-white md:w-1/2 mx-auto block mt-20 mb-14 px-4 py-2 rounded-lg border border-gray-300 focus:outline-none focus:ring focus:border-blue-500"
       />
 
       <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
@@ -86,36 +91,55 @@ const Product = () => {
           <motion.div
             key={product._id}
              
-            className="bg-white/10 backdrop-blur-md border border-white/20 rounded-xl shadow-lg overflow-hidden text-white"
+            className="bg-white/5 backdrop-blur-md border border-white/20 rounded-xl shadow-lg overflow-hidden text-white"
           >
-            <img
-              src={product.image || 'https://via.placeholder.com/300'}
-              alt={product.productName}
-              className="w-full h-48 object-cover"
-            />
+            <Link
+            
+             to={`/productDetails/${product._id}`} >
+                    <img
+                    src={product.image || 'https://via.placeholder.com/300'}
+                    alt={product.productName}
+                    className="w-full h-48 object-cover"
+                  />
+            </Link>
+           
+
             <div className="p-4">
               <Link
                 to={`/productDetails/${product._id}`}
                 className="text-xl font-semibold hover:underline capitalize"
               >
-                {product.productName}
+              <span className='text-amber-800'>Product Name :</span>   {product.productName}
               </Link>
 
-              <div className="mt-2 flex flex-wrap gap-2">
+              <div className="mt-4 mb-8 flex flex-wrap gap-2 text-amber-700"> Tag : 
                 {product.tags.map((tag, idx) => (
                   <span
                     key={idx}
-                    className="bg-orange-500 text-xs px-2 py-1 rounded-full"
+                    className="bg-[#582d0f] text-white  text-xs px-3 py-2 rounded-full"
                   >
                     #{tag}
                   </span>
                 ))}
               </div>
 
+              
+
               <div className="mt-4 flex justify-between items-center">
+
+
+                <div >
+                  <Link to={`/productDetails/${product._id}`}  >
+                  <button className='border-1 border-amber-600 p-2 rounded-lg cursor-pointer hover:text-amber-700'>Details</button>
+                  </Link>
+                </div>
+
+                <div className='flex gap-3'>
+
+                
                 <button
                   onClick={() => handleUpvote(product._id)}
-                  className="flex items-center gap-1 text-white bg-red-600 hover:bg-red-700 px-3 py-1.5 rounded-lg disabled:opacity-50"
+                  className="flex items-center gap-1 text-amber-700 border-1 border-amber-800 hover:bg-amber-600/20 px-3 py-1.5 rounded-lg disabled:opacity-50"
                   disabled={user?.email === product.ownerEmail || product.voted}
                 >
                   <FaHeart className="text-lg" /> {product.vote_count || 0}
@@ -124,9 +148,10 @@ const Product = () => {
                 <img
                   src={product.ownerImage || 'https://via.placeholder.com/40'}
                   alt={product.ownerName}
-                  className="w-8 h-8 rounded-full border-2 border-white"
+                  className="w-10 h-10 rounded-full border-2 p-1 border-amber-800"
                   title={product.ownerName}
                 />
+                </div>
               </div>
             </div>
           </motion.div>
@@ -134,7 +159,7 @@ const Product = () => {
       </div>
 
       {/* Pagination */}
-      <div className="mt-8 flex justify-center gap-2">
+      <div className="mt-20 flex justify-center gap-2">
         {[0,1,2,3].map((num) => (
           <button
             key={num}

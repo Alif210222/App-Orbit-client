@@ -12,7 +12,15 @@ const Navbar = () => {
          const links = < >
           <li className='  text-white   text-lg lg:mr-3 '><NavLink className={({isActive})=> isActive ? "text-orange-400 " :"" } to='/'>Home</NavLink></li>
           <li className='  text-white   text-lg lg:mr-3 '><NavLink className={({isActive})=> isActive ? "text-orange-400" : "" } to="/product">Products</NavLink></li>
-          <li className='  text-white   text-lg lg:mr-3 '><NavLink className={({isActive})=> isActive ? "text-orange-400" : "" }to="/about" >About us</NavLink></li>
+          <li className='  text-white   text-lg lg:mr-3 '><NavLink className={({isActive})=> isActive ? "text-orange-400" : "" } to="/about" >About us</NavLink></li>
+
+          {
+            user && (
+               <li className='text-white   text-lg lg:mr-3'>
+               <NavLink to="/dashboard" className={({isActive})=> isActive ? "text-orange-400" : "" }>Dashboard</NavLink>
+        </li>
+            )
+          }
          
          
          </>
@@ -20,7 +28,7 @@ const Navbar = () => {
 
 
     return (
-     <div className="navbar bg-gradient-to-r from-[#0a0400] via-[#321900]   to-[#070000] shadow-sm px-2 md:px-20 py-4">
+     <div className="navbar bg-gradient-to-r from-[#0a0400] via-[#321900]   to-[#070000] shadow-sm px-2 md:px-20 py-4  fixed top-0 z-50">
    <div className="navbar-start">
     <div className="dropdown">
       <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden ">

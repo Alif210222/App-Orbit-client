@@ -8,6 +8,7 @@ import HomeCard from '../../Components/HomeCard/HomeCard';
 import OurServices from '../../Components/OurServiceSection/OurService';
 import FAQSection from '../../DashBoard/FAQSection/FAQSection';
 import {Helmet} from "react-helmet";
+import UserReviews from '../../Components/UserReviews/UserReviews';
 
 
 const Homepage = () => {
@@ -19,9 +20,11 @@ const Homepage = () => {
               </Helmet>
 
 
-           <Banner></Banner>
+             <Banner></Banner>
 
-           <HomeCard></HomeCard>
+             <OurServices></OurServices>
+
+              <HomeCard></HomeCard>
 
 
            <FeaturedProduct></FeaturedProduct>
@@ -29,14 +32,19 @@ const Homepage = () => {
 
            <TrendingProducts></TrendingProducts>
 
+
            
            <CouponSlider></CouponSlider>
 
 
+          
            <FAQSection></FAQSection>
 
 
-           <OurServices></OurServices>
+           <UserReviews></UserReviews>
+
+
+          
         </div>
     );
 };

@@ -44,15 +44,15 @@ const services = [
 
 const OurServices = () => {
   return (
-    <div className="py-20 px-6 mb-14">
+    <div className="py-20 px-6 mb-14 mt-18">
       <h2 className="text-center text-4xl font-bold text-white mb-12">Our Services</h2>
 
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10 max-w-7xl mx-auto">
         {services.map((service, index) => (
           <motion.div
             key={index}
-            initial={{ opacity: 0, x: index % 2 === 0 ? -50 : 50 }}
-            whileInView={{ opacity: 1, x: 0 }}
+            initial={{ opacity: 0, y:80 }}
+            whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, ease: 'easeOut' }}
             viewport={{ once: true }}
             className="bg-[#4e392f] hover:bg-[#5a4033] transition rounded-2xl shadow-lg p-6 text-white  hover:scale-105 transition-transform duration-300"

@@ -16,13 +16,13 @@ import './AnimatedBorder.css';
 
 const Banner = () => {
   return (
-    <div className="px-4 mt-4">
+    <div className="px-4 mt-18 md:mt-21 lg:mt-22">
       <div className=" relative p-[4px] rounded-2xl bg-gradient-to-r from-[#7d3d11] via-[#2e1e13] to-[#326a9a] animate-borderMove shadow-xl overflow-hidden">
 
         {/* Rotating Corner Icons (Hidden on mobile) */}
 
        <motion.div
-  className="text-6xl text-[#537d7e] absolute top-10 left-10"
+  className="hidden md:flex text-6xl text-[#537d7e] absolute top-10 left-10"
   animate={{ rotate: 360 }}
   transition={{ repeat: Infinity, duration: 6, ease: "linear" }}
 >
@@ -30,7 +30,7 @@ const Banner = () => {
 </motion.div>
 
            <motion.div
-  className="text-6xl text-[#537d7e] absolute top-10 right-10"
+  className="hidden md:flex text-6xl text-[#537d7e] absolute top-10 right-10"
   animate={{ rotate: 360 }}
   transition={{ repeat: Infinity, duration: 6, ease: "linear" }}
 >
@@ -42,30 +42,28 @@ const Banner = () => {
       
 
         {/* Main Banner Content */}
-        <div className="relative min-h-[720px] flex items-center justify-center text-center rounded-[calc(1rem-3px)]   px-4">
+        <div className="relative min-h-[720px] flex items-center justify-center text-center rounded-[calc(1rem-3px)] -mt-14 md:mt-0  px-4">
           <motion.div
             className="max-w-3xl"
-            initial={{ opacity: 0, y: 80 }}
+            initial={{ opacity: 0, y: 80 }} 
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.9, ease: "easeOut" }}
           >
             <h1 className="text-4xl md:text-5xl font-medium text-white mb-10">
               Transform your business with the power{" "}
-              <span className="text-transparent font-bold bg-clip-text bg-gradient-to-r from-[#c05006] via-[#454067] to-[#1f0fd0]">
-                of tech products.
+              <span className="text-transparent font-bold bg-clip-text bg-gradient-to-r from-[#c05006] via-[#a47240] to-[#9c530a]">
+                of our built-in websites.
               </span>
             </h1>
             <p className="text-lg md:text-xl text-gray-400 mb-14">
-              In a world where cyberattacks are becoming more sophisticated,
-              your business deserves the best protection. Our expert team
-              leverages cutting-edge technology.
+              We create complete, ready-to-launch websites for businesses — parcel delivery, e-commerce, UMS systems, and more — so you can focus on growing, not building.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <button className="bg-black text-lg border-2 border-amber-700 text-white font-semibold px-8 py-3 rounded-full hover:bg-amber-700 transition duration-700">
-                Explore this site
+              <button className="bg-black text-lg border-2 border-amber-700 text-white font-semibold px-8 py-3 rounded-full  transition duration-700">
+                Explore this web
               </button>
-              <button className="bg-transparent text-lg bg-gradient-to-r from-[#752f00] via-[#401f02] to-[#1f109f] text-white font-semibold px-7 py-3 rounded-full hover:bg-amber-700 transition">
-                Join Now
+              <button className="bg-transparent text-lg bg-gradient-to-r from-[#752f00] via-[#401f02] to-[#140c5e] text-white font-semibold px-7 py-3 rounded-full hover:bg-amber-700 transition">
+                Choose your own site.
               </button>
             </div>
           </motion.div>
@@ -79,7 +77,7 @@ const Banner = () => {
               </div>
               <div className="flex items-center gap-3 bg-white/10 backdrop-blur-md p-4 rounded-xl text-white shadow-md">
                 <FaUserCheck className="text-4xl text-green-400" />
-                <p className="font-semibold">Verified Users</p>
+                <p className="font-semibold">Verified Role Base Users</p>
               </div>
               <div className="flex items-center gap-3 bg-white/10 backdrop-blur-md p-4 rounded-xl text-white shadow-md">
                 <FaChartBar className="text-4xl text-blue-400" />

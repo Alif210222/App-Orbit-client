@@ -65,16 +65,17 @@ const FeaturedProducts = () => {
         {featuredProducts.map((product) => (
           <div
             key={product._id}
-            className="bg-gradient-to-br from-[#1a0461] via-[#000000] to-[#431b01] rounded-xl shadow-lg overflow-hidden w-70 md:w-full mx-auto h-96 text-center border border-[#5f8aa4]  hover:scale-105 transition-transform duration-300"
+            className=" bg-white/5 rounded-xl shadow-lg overflow-hidden w-70 md:w-full mx-auto h-96 text-center    hover:scale-105 transition-transform duration-300"
           >
             <div className='flex justify-center p-3'>
+              
             <img
               src={product.image}
               alt={product.productName}
-              className="w-35 h-35 object-cover rounded-full "
+              className="h-35 w-full object-cover rounded "
             />
              </div>
-            <div className="p-4 text-white">
+            <div className="p-4 text-gray-300">
               <Link
                 to={`/productDetails/${product._id}`}
                 className="text-xl font-semibold capitalize hover:underline "
@@ -86,7 +87,7 @@ const FeaturedProducts = () => {
                 {product.tags.map((tag, idx) => (
                   <span
                     key={idx}
-                    className=" bg-orange-500 text-xs px-2 py-1 rounded-full mb-4"
+                    className=" bg-[#492409]/60   text-[#faf8f8] text-xs px-3 py-2 rounded-full mb-4"
                   >
                     #{tag}
                   </span>
@@ -97,7 +98,7 @@ const FeaturedProducts = () => {
 
                 <button
                   onClick={() => handleUpvote(product._id)}
-                  className="flex items-center gap-1 text-white bg-red-600 hover:bg-red-700 px-3 py-1.5 rounded-lg disabled:opacity-50"
+                  className="flex items-center gap-1 text-amber-700 border-1 border-amber-600 hover:bg-amber-600/20 px-3 py-1.5 rounded-lg disabled:opacity-50"
                   disabled={user?.email === product.ownerEmail || product.voted}
                 >
                   <FaHeart className="text-lg" /> {product.vote_count || 0}
@@ -106,7 +107,7 @@ const FeaturedProducts = () => {
                   <img
                   src={product.ownerImage || 'https://i.ibb.co/4pDNDk1/default-user.png'}
                   alt={product.ownerName}
-                  className="w-8 h-8 rounded-full border-2 border-white"
+                  className="w-10 h-10 rounded-full border-1 border-amber-600 p-1"
                   title={product.ownerName}
                 />
 

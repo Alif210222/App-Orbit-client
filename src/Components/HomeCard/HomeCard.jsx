@@ -30,7 +30,7 @@ const cardsData = [
 
 const HomeCard = () => {
   return (
-    <div className="max-w-6xl mx-auto px-4 py-20 mb-10">
+    <div className="max-w-7xl mx-auto px-4 py-14 mb-10">
 
     <div className="text-center mb-12 mt-4">
         <h2 className="text-4xl font-bold text-white">Our Platform Impact</h2>
