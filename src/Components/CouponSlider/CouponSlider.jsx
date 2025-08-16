@@ -43,7 +43,8 @@ const getVisibleCoupons = () => {
 
   return (
     <div className="relative mt-24 px-6 max-w-4xl mx-auto">
-      <h2 className="text-3xl font-bold mb-16 text-center  text-white">All Coupons</h2>
+      <h2 className="text-3xl font-bold mb-3 text-center  text-white">All Coupons</h2>
+      <p className="text-center mb-14 text-gray-400">When you verify your account, you can get some discounts by using this coupon card. </p>
 
       <div className="relative overflow-hidden">
         <AnimatePresence mode="wait">
