@@ -136,7 +136,7 @@ const ManageCupon = () => {
             <input type="number" {...register('discount', { required: true })} placeholder='Add your discount amount' className="w-full px-4 py-2 rounded text-white border-1 border-white" />
           </div>
           <div className="md:col-span-2 text-center mt-4">
-            <button type="submit" className="bg-blue-600 hover:bg-blue-700 px-6 py-2 rounded text-white font-semibold">
+            <button type="submit" className="bg-amber-600/30 hover:bg-amber-700/30 cursor-pointer text-gray-300 px-6 py-2 rounded  font-semibold">
               {editingCoupon ? 'Update Coupon' : 'Add Coupon'}
             </button>
           </div>

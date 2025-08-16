@@ -235,7 +235,7 @@ const handleDelete = (i) => {
         <div className="text-center pt-4">
           <button
             type="submit"
-            className="px-6 py-3 bg-blue-600 hover:bg-blue-700 text-white rounded-lg shadow-md font-semibold transition"
+            className="px-6 py-3 bg-amber-600/30 hover:bg-amber-700/30 cursor-pointer text-gray-300 rounded-lg shadow-md font-semibold transition"
           >
             Submit Product 
           </button>
